@@ -41,6 +41,15 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/forecasts" element={<DashboardSubPage />} />
+            <Route path="/dashboard/inventory" element={<DashboardSubPage />} />
+            <Route path="/dashboard/purchase-orders" element={<DashboardSubPage />} />
+            <Route path="/dashboard/analytics" element={<DashboardSubPage />} />
+            <Route path="/dashboard/reports" element={<DashboardSubPage />} />
+            <Route path="/dashboard/alerts" element={<DashboardSubPage />} />
+            <Route path="/dashboard/team" element={<DashboardSubPage />} />
+            <Route path="/dashboard/settings" element={<DashboardSubPage />} />
+            <Route path="/dashboard/integrations" element={<DashboardSubPage />} />
             <Route path="/features" element={<Features />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/case-studies" element={<CaseStudies />} />
