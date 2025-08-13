@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { 
+import {
   Check,
   X,
   ArrowRight,
@@ -15,7 +15,8 @@ import {
   Users,
   MessageCircle,
   Shield,
-  Star
+  Star,
+  TrendingUp
 } from "lucide-react";
 
 export default function Pricing() {
