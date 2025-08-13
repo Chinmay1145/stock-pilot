@@ -160,23 +160,49 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-muted-foreground text-sm">
-            © 2024 StockPilot. All rights reserved.
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link 
-              to="/privacy" 
-              className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-            >
-              Privacy Policy
-            </Link>
-            <Link 
-              to="/terms" 
-              className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-            >
-              Terms of Service
-            </Link>
+        <div className="border-t border-border mt-8 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-4">
+            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
+              <p className="text-muted-foreground text-sm">
+                © 2024 StockPilot, Inc. All rights reserved.
+              </p>
+              <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                <span className="w-2 h-2 bg-success rounded-full"></span>
+                <span>All systems operational</span>
+              </div>
+            </div>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link
+                to="/privacy"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/terms"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Terms of Service
+              </Link>
+              <Link
+                to="/status"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                System Status
+              </Link>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground">
+            <div className="flex space-x-4 mb-2 md:mb-0">
+              <span>SOC 2 Type II Certified</span>
+              <span>•</span>
+              <span>GDPR Compliant</span>
+              <span>•</span>
+              <span>ISO 27001</span>
+            </div>
+            <div>
+              Made with ❤️ in San Francisco
+            </div>
           </div>
         </div>
       </div>
