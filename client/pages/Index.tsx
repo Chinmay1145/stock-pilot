@@ -378,6 +378,9 @@ export default function Index() {
       </section>
 
       <Footer />
+
+      {/* Cookie Consent Banner */}
+      <CookieConsent />
     </div>
   );
 }
