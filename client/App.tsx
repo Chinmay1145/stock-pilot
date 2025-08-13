@@ -47,12 +47,12 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/forecasts" element={<DashboardSubPage />} />
-            <Route path="/dashboard/inventory" element={<DashboardSubPage />} />
-            <Route path="/dashboard/purchase-orders" element={<DashboardSubPage />} />
-            <Route path="/dashboard/analytics" element={<DashboardSubPage />} />
-            <Route path="/dashboard/reports" element={<DashboardSubPage />} />
-            <Route path="/dashboard/alerts" element={<DashboardSubPage />} />
+            <Route path="/dashboard/forecasts" element={<DashboardForecasts />} />
+            <Route path="/dashboard/inventory" element={<DashboardInventory />} />
+            <Route path="/dashboard/purchase-orders" element={<DashboardPurchaseOrders />} />
+            <Route path="/dashboard/analytics" element={<DashboardAnalytics />} />
+            <Route path="/dashboard/reports" element={<DashboardReports />} />
+            <Route path="/dashboard/alerts" element={<DashboardAlerts />} />
             <Route path="/dashboard/team" element={<DashboardSubPage />} />
             <Route path="/dashboard/settings" element={<DashboardSubPage />} />
             <Route path="/dashboard/integrations" element={<DashboardSubPage />} />
