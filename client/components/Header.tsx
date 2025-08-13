@@ -108,6 +108,10 @@ export default function Header() {
               </Link>
               <div className="pt-4 border-t border-border">
                 <div className="flex flex-col space-y-2">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-muted-foreground">Theme</span>
+                    <ThemeToggle />
+                  </div>
                   <Link to="/login">
                     <Button variant="ghost" className="w-full justify-start">
                       Sign In
