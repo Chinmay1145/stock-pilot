@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { 
+import {
   Search,
   ShoppingCart,
   Calculator,
@@ -23,7 +29,7 @@ import {
   ExternalLink,
   Settings,
   BarChart3,
-  Users
+  Users,
 } from "lucide-react";
 
 export default function Integrations() {
@@ -32,32 +38,50 @@ export default function Integrations() {
       name: "Shopify",
       logo: "🛍️",
       category: "E-commerce",
-      description: "Sync products, orders, and inventory data automatically from your Shopify store",
-      features: ["Real-time sync", "Product catalogs", "Order history", "Multi-store support"],
+      description:
+        "Sync products, orders, and inventory data automatically from your Shopify store",
+      features: [
+        "Real-time sync",
+        "Product catalogs",
+        "Order history",
+        "Multi-store support",
+      ],
       setupTime: "2 minutes",
       popular: true,
-      verified: true
+      verified: true,
     },
     {
       name: "QuickBooks",
       logo: "📊",
       category: "Accounting",
-      description: "Connect financial data and purchase orders with your accounting system",
-      features: ["PO automation", "Cost tracking", "Financial reports", "Tax integration"],
+      description:
+        "Connect financial data and purchase orders with your accounting system",
+      features: [
+        "PO automation",
+        "Cost tracking",
+        "Financial reports",
+        "Tax integration",
+      ],
       setupTime: "5 minutes",
       popular: true,
-      verified: true
+      verified: true,
     },
     {
       name: "Slack",
       logo: "💬",
       category: "Communication",
-      description: "Get notifications and approve purchase orders directly in Slack",
-      features: ["Interactive buttons", "Custom workflows", "Team notifications", "Approval chains"],
+      description:
+        "Get notifications and approve purchase orders directly in Slack",
+      features: [
+        "Interactive buttons",
+        "Custom workflows",
+        "Team notifications",
+        "Approval chains",
+      ],
       setupTime: "3 minutes",
       popular: true,
-      verified: true
-    }
+      verified: true,
+    },
   ];
 
   const integrationCategories = [
@@ -67,25 +91,50 @@ export default function Integrations() {
       color: "primary",
       integrations: [
         { name: "Shopify", logo: "🛍️", status: "verified", setupTime: "2 min" },
-        { name: "WooCommerce", logo: "🛒", status: "verified", setupTime: "3 min" },
-        { name: "BigCommerce", logo: "🏪", status: "verified", setupTime: "3 min" },
+        {
+          name: "WooCommerce",
+          logo: "🛒",
+          status: "verified",
+          setupTime: "3 min",
+        },
+        {
+          name: "BigCommerce",
+          logo: "🏪",
+          status: "verified",
+          setupTime: "3 min",
+        },
         { name: "Magento", logo: "🎯", status: "verified", setupTime: "5 min" },
         { name: "Squarespace", logo: "◼️", status: "beta", setupTime: "4 min" },
-        { name: "Wix", logo: "🔷", status: "beta", setupTime: "4 min" }
-      ]
+        { name: "Wix", logo: "🔷", status: "beta", setupTime: "4 min" },
+      ],
     },
     {
       name: "Accounting & ERP",
       icon: Calculator,
       color: "accent",
       integrations: [
-        { name: "QuickBooks", logo: "📊", status: "verified", setupTime: "5 min" },
+        {
+          name: "QuickBooks",
+          logo: "📊",
+          status: "verified",
+          setupTime: "5 min",
+        },
         { name: "Xero", logo: "💼", status: "verified", setupTime: "4 min" },
-        { name: "NetSuite", logo: "📈", status: "verified", setupTime: "10 min" },
+        {
+          name: "NetSuite",
+          logo: "📈",
+          status: "verified",
+          setupTime: "10 min",
+        },
         { name: "SAP", logo: "🔧", status: "enterprise", setupTime: "Custom" },
-        { name: "Oracle", logo: "🔴", status: "enterprise", setupTime: "Custom" },
-        { name: "Sage", logo: "🟢", status: "coming-soon", setupTime: "TBD" }
-      ]
+        {
+          name: "Oracle",
+          logo: "🔴",
+          status: "enterprise",
+          setupTime: "Custom",
+        },
+        { name: "Sage", logo: "🟢", status: "coming-soon", setupTime: "TBD" },
+      ],
     },
     {
       name: "Communication",
@@ -93,38 +142,68 @@ export default function Integrations() {
       color: "success",
       integrations: [
         { name: "Slack", logo: "💬", status: "verified", setupTime: "3 min" },
-        { name: "Microsoft Teams", logo: "👥", status: "verified", setupTime: "4 min" },
+        {
+          name: "Microsoft Teams",
+          logo: "👥",
+          status: "verified",
+          setupTime: "4 min",
+        },
         { name: "Discord", logo: "🎮", status: "beta", setupTime: "3 min" },
         { name: "Email", logo: "📧", status: "verified", setupTime: "1 min" },
         { name: "SMS", logo: "📱", status: "verified", setupTime: "2 min" },
-        { name: "Webhook", logo: "🔗", status: "verified", setupTime: "2 min" }
-      ]
+        { name: "Webhook", logo: "🔗", status: "verified", setupTime: "2 min" },
+      ],
     },
     {
       name: "Inventory Management",
       icon: Package,
       color: "warning",
       integrations: [
-        { name: "TradeGecko", logo: "📦", status: "verified", setupTime: "6 min" },
+        {
+          name: "TradeGecko",
+          logo: "📦",
+          status: "verified",
+          setupTime: "6 min",
+        },
         { name: "Cin7", logo: "📋", status: "verified", setupTime: "7 min" },
-        { name: "Fishbowl", logo: "🐠", status: "verified", setupTime: "8 min" },
+        {
+          name: "Fishbowl",
+          logo: "🐠",
+          status: "verified",
+          setupTime: "8 min",
+        },
         { name: "inFlow", logo: "⚡", status: "beta", setupTime: "5 min" },
         { name: "Ordoro", logo: "📊", status: "coming-soon", setupTime: "TBD" },
-        { name: "SkuVault", logo: "🏭", status: "coming-soon", setupTime: "TBD" }
-      ]
+        {
+          name: "SkuVault",
+          logo: "🏭",
+          status: "coming-soon",
+          setupTime: "TBD",
+        },
+      ],
     },
     {
       name: "Fulfillment & Logistics",
       icon: Truck,
       color: "destructive",
       integrations: [
-        { name: "ShipStation", logo: "🚢", status: "verified", setupTime: "4 min" },
+        {
+          name: "ShipStation",
+          logo: "🚢",
+          status: "verified",
+          setupTime: "4 min",
+        },
         { name: "FedEx", logo: "📦", status: "verified", setupTime: "5 min" },
         { name: "UPS", logo: "🚚", status: "verified", setupTime: "5 min" },
         { name: "DHL", logo: "✈️", status: "verified", setupTime: "5 min" },
         { name: "Amazon FBA", logo: "📦", status: "beta", setupTime: "8 min" },
-        { name: "3PL Central", logo: "🏢", status: "coming-soon", setupTime: "TBD" }
-      ]
+        {
+          name: "3PL Central",
+          logo: "🏢",
+          status: "coming-soon",
+          setupTime: "TBD",
+        },
+      ],
     },
     {
       name: "Payment Processors",
@@ -135,22 +214,43 @@ export default function Integrations() {
         { name: "PayPal", logo: "💰", status: "verified", setupTime: "4 min" },
         { name: "Square", logo: "◼️", status: "verified", setupTime: "4 min" },
         { name: "Braintree", logo: "🧠", status: "beta", setupTime: "5 min" },
-        { name: "Authorize.net", logo: "🔐", status: "beta", setupTime: "5 min" },
-        { name: "Adyen", logo: "🔷", status: "coming-soon", setupTime: "TBD" }
-      ]
-    }
+        {
+          name: "Authorize.net",
+          logo: "🔐",
+          status: "beta",
+          setupTime: "5 min",
+        },
+        { name: "Adyen", logo: "🔷", status: "coming-soon", setupTime: "TBD" },
+      ],
+    },
   ];
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "verified":
-        return <Badge className="bg-success text-success-foreground text-xs">Verified</Badge>;
+        return (
+          <Badge className="bg-success text-success-foreground text-xs">
+            Verified
+          </Badge>
+        );
       case "beta":
-        return <Badge variant="secondary" className="text-xs">Beta</Badge>;
+        return (
+          <Badge variant="secondary" className="text-xs">
+            Beta
+          </Badge>
+        );
       case "enterprise":
-        return <Badge className="bg-primary text-primary-foreground text-xs">Enterprise</Badge>;
+        return (
+          <Badge className="bg-primary text-primary-foreground text-xs">
+            Enterprise
+          </Badge>
+        );
       case "coming-soon":
-        return <Badge variant="outline" className="text-xs">Coming Soon</Badge>;
+        return (
+          <Badge variant="outline" className="text-xs">
+            Coming Soon
+          </Badge>
+        );
       default:
         return null;
     }
@@ -176,7 +276,7 @@ export default function Integrations() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-background to-muted">
         <div className="container mx-auto text-center">
@@ -186,18 +286,20 @@ export default function Integrations() {
               200+ Integrations
             </Badge>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Connect StockPilot with<br />
+              Connect StockPilot with
+              <br />
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 your entire stack
               </span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Seamlessly integrate with your existing e-commerce, accounting, and communication tools. 
-              No manual data entry, no switching between platforms.
+              Seamlessly integrate with your existing e-commerce, accounting,
+              and communication tools. No manual data entry, no switching
+              between platforms.
             </p>
             <div className="max-w-md mx-auto relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input 
+              <Input
                 placeholder="Search integrations..."
                 className="pl-10 h-12 text-lg"
               />
@@ -214,13 +316,17 @@ export default function Integrations() {
               Most Popular Integrations
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              The integrations our customers use most to transform their workflow
+              The integrations our customers use most to transform their
+              workflow
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {featuredIntegrations.map((integration, index) => (
-              <Card key={index} className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group">
+              <Card
+                key={index}
+                className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group"
+              >
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex items-center space-x-3">
@@ -290,18 +396,25 @@ export default function Integrations() {
             {integrationCategories.map((category, index) => (
               <div key={index}>
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${getColorClasses(category.color)}`}>
+                  <div
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center ${getColorClasses(category.color)}`}
+                  >
                     <category.icon className="h-4 w-4" />
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground">{category.name}</h3>
+                  <h3 className="text-2xl font-bold text-foreground">
+                    {category.name}
+                  </h3>
                   <Badge variant="outline" className="ml-auto">
                     {category.integrations.length} integrations
                   </Badge>
                 </div>
-                
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
                   {category.integrations.map((integration, i) => (
-                    <Card key={i} className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group">
+                    <Card
+                      key={i}
+                      className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                    >
                       <CardContent className="p-4 text-center">
                         <div className="text-2xl mb-2">{integration.logo}</div>
                         <h4 className="font-medium text-foreground group-hover:text-primary transition-colors text-sm">
@@ -412,11 +525,17 @@ export default function Integrations() {
             </div>
             <div>
               <div className="text-4xl font-bold text-accent mb-2">10x</div>
-              <p className="text-muted-foreground">Faster setup than manual imports</p>
+              <p className="text-muted-foreground">
+                Faster setup than manual imports
+              </p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-success mb-2">Real-time</div>
-              <p className="text-muted-foreground">Data sync across all platforms</p>
+              <div className="text-4xl font-bold text-success mb-2">
+                Real-time
+              </div>
+              <p className="text-muted-foreground">
+                Data sync across all platforms
+              </p>
             </div>
           </div>
         </div>
@@ -429,17 +548,26 @@ export default function Integrations() {
             Ready to connect your stack?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Start with a free trial and connect your first integration in minutes
+            Start with a free trial and connect your first integration in
+            minutes
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/signup">
-              <Button size="lg" variant="secondary" className="px-8 py-4 text-lg gap-2">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="px-8 py-4 text-lg gap-2"
+              >
                 Start Free Trial
                 <ArrowRight className="h-5 w-5" />
               </Button>
             </Link>
             <Link to="/docs">
-              <Button size="lg" variant="outline" className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-primary">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-primary"
+              >
                 View Setup Guides
               </Button>
             </Link>

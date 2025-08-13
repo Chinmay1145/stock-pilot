@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { 
+import {
   Search,
   Code,
   Key,
@@ -21,7 +27,7 @@ import {
   FileText,
   Terminal,
   Book,
-  Globe
+  Globe,
 } from "lucide-react";
 
 export default function ApiDocs() {
@@ -30,50 +36,50 @@ export default function ApiDocs() {
       method: "GET",
       path: "/forecasts",
       description: "Get demand forecasts for SKUs",
-      category: "Forecasting"
+      category: "Forecasting",
     },
     {
       method: "POST",
       path: "/forecasts",
       description: "Create a new forecast request",
-      category: "Forecasting"
+      category: "Forecasting",
     },
     {
       method: "GET",
       path: "/forecasts/{id}",
       description: "Get specific forecast by ID",
-      category: "Forecasting"
+      category: "Forecasting",
     },
     {
       method: "GET",
       path: "/inventory",
       description: "Get current inventory levels",
-      category: "Inventory"
+      category: "Inventory",
     },
     {
       method: "POST",
       path: "/purchase-orders",
       description: "Create purchase order suggestions",
-      category: "Purchase Orders"
+      category: "Purchase Orders",
     },
     {
       method: "GET",
       path: "/purchase-orders",
       description: "List purchase orders",
-      category: "Purchase Orders"
+      category: "Purchase Orders",
     },
     {
       method: "PUT",
       path: "/purchase-orders/{id}/approve",
       description: "Approve a purchase order",
-      category: "Purchase Orders"
+      category: "Purchase Orders",
     },
     {
       method: "GET",
       path: "/analytics",
       description: "Get forecast accuracy metrics",
-      category: "Analytics"
-    }
+      category: "Analytics",
+    },
   ];
 
   const sdks = [
@@ -82,29 +88,29 @@ export default function ApiDocs() {
       icon: "🐍",
       description: "Official Python SDK with async support",
       install: "pip install stockpilot-python",
-      docs: "/docs/sdks/python"
+      docs: "/docs/sdks/python",
     },
     {
       name: "Node.js",
       icon: "🟢",
       description: "TypeScript-ready Node.js library",
       install: "npm install @stockpilot/sdk",
-      docs: "/docs/sdks/nodejs"
+      docs: "/docs/sdks/nodejs",
     },
     {
       name: "Go",
       icon: "🐹",
       description: "Lightweight Go client library",
       install: "go get github.com/stockpilot/go-sdk",
-      docs: "/docs/sdks/go"
+      docs: "/docs/sdks/go",
     },
     {
       name: "PHP",
       icon: "🐘",
       description: "Composer-ready PHP package",
       install: "composer require stockpilot/php-sdk",
-      docs: "/docs/sdks/php"
-    }
+      docs: "/docs/sdks/php",
+    },
   ];
 
   const getMethodColor = (method: string) => {
@@ -125,7 +131,7 @@ export default function ApiDocs() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-background to-muted">
         <div className="container mx-auto text-center">
@@ -135,21 +141,27 @@ export default function ApiDocs() {
               REST API v1.0
             </Badge>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Build with the<br />
+              Build with the
+              <br />
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 StockPilot API
               </span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Integrate demand forecasting, inventory optimization, and purchase order automation 
-              into your applications with our powerful REST API.
+              Integrate demand forecasting, inventory optimization, and purchase
+              order automation into your applications with our powerful REST
+              API.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" className="px-8 py-4 text-lg gap-2">
                 Get API Key
                 <Key className="h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="px-8 py-4 text-lg gap-2">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-4 text-lg gap-2"
+              >
                 <Terminal className="h-5 w-5" />
                 Try in Playground
               </Button>
@@ -178,7 +190,7 @@ export default function ApiDocs() {
                 <TabsTrigger value="nodejs">Node.js</TabsTrigger>
                 <TabsTrigger value="go">Go</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="curl" className="mt-6">
                 <Card>
                   <CardHeader>
@@ -220,7 +232,7 @@ curl -X GET "https://api.stockpilot.ai/v1/forecasts?sku=PRODUCT-123" \\
                   </CardContent>
                 </Card>
               </TabsContent>
-              
+
               <TabsContent value="python" className="mt-6">
                 <Card>
                   <CardHeader>
@@ -262,7 +274,7 @@ print(f"PO created: {po.id}")
                   </CardContent>
                 </Card>
               </TabsContent>
-              
+
               <TabsContent value="nodejs" className="mt-6">
                 <Card>
                   <CardHeader>
@@ -306,7 +318,7 @@ console.log(\`PO created: \${po.id}\`);
                   </CardContent>
                 </Card>
               </TabsContent>
-              
+
               <TabsContent value="go" className="mt-6">
                 <Card>
                   <CardHeader>
@@ -383,20 +395,22 @@ func main() {
             <div className="mb-6">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input 
-                  placeholder="Search endpoints..."
-                  className="pl-10"
-                />
+                <Input placeholder="Search endpoints..." className="pl-10" />
               </div>
             </div>
 
             <div className="space-y-4">
               {endpoints.map((endpoint, index) => (
-                <Card key={index} className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group">
+                <Card
+                  key={index}
+                  className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                >
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
-                        <Badge className={`${getMethodColor(endpoint.method)} font-mono text-xs`}>
+                        <Badge
+                          className={`${getMethodColor(endpoint.method)} font-mono text-xs`}
+                        >
                           {endpoint.method}
                         </Badge>
                         <div>
@@ -437,7 +451,10 @@ func main() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {sdks.map((sdk, index) => (
-              <Card key={index} className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group">
+              <Card
+                key={index}
+                className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group"
+              >
                 <CardHeader className="text-center">
                   <div className="text-3xl mb-2">{sdk.icon}</div>
                   <CardTitle className="group-hover:text-primary transition-colors">
@@ -449,7 +466,9 @@ func main() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="bg-black rounded p-2 text-center">
-                    <code className="text-green-400 text-xs">{sdk.install}</code>
+                    <code className="text-green-400 text-xs">
+                      {sdk.install}
+                    </code>
                   </div>
                   <Button variant="outline" size="sm" className="w-full gap-2">
                     <Book className="h-3 w-3" />
@@ -646,15 +665,24 @@ func main() {
             Ready to start building?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Get your API key and start integrating StockPilot into your applications
+            Get your API key and start integrating StockPilot into your
+            applications
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" variant="secondary" className="px-8 py-4 text-lg gap-2">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="px-8 py-4 text-lg gap-2"
+            >
               Get API Key Free
               <Key className="h-5 w-5" />
             </Button>
             <Link to="/docs">
-              <Button size="lg" variant="outline" className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-primary gap-2">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-primary gap-2"
+              >
                 <Book className="h-5 w-5" />
                 Read Full Docs
               </Button>

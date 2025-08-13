@@ -18,31 +18,33 @@ export default function Header() {
             <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-lg">
               <TrendingUp className="h-6 w-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-foreground">StockPilot</span>
+            <span className="text-2xl font-bold text-foreground">
+              StockPilot
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link 
-              to="/features" 
+            <Link
+              to="/features"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Features
             </Link>
-            <Link 
-              to="/pricing" 
+            <Link
+              to="/pricing"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Pricing
             </Link>
-            <Link 
-              to="/case-studies" 
+            <Link
+              to="/case-studies"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Case Studies
             </Link>
-            <Link 
-              to="/blog" 
+            <Link
+              to="/blog"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Blog
@@ -78,28 +80,28 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-4">
-              <Link 
+              <Link
                 to="/features"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Features
               </Link>
-              <Link 
+              <Link
                 to="/pricing"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Pricing
               </Link>
-              <Link 
+              <Link
                 to="/case-studies"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Case Studies
               </Link>
-              <Link 
+              <Link
                 to="/blog"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setIsMenuOpen(false)}

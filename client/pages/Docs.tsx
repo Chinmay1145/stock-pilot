@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { 
+import {
   Search,
   BookOpen,
   Code,
@@ -22,7 +28,7 @@ import {
   CheckCircle,
   Clock,
   Download,
-  Copy
+  Copy,
 } from "lucide-react";
 
 export default function Docs() {
@@ -31,26 +37,26 @@ export default function Docs() {
       step: 1,
       title: "Create Your Account",
       description: "Sign up for a free 14-day trial",
-      time: "2 minutes"
+      time: "2 minutes",
     },
     {
       step: 2,
       title: "Connect Your Store",
       description: "Integrate with Shopify, WooCommerce, or upload CSV",
-      time: "5 minutes"
+      time: "5 minutes",
     },
     {
       step: 3,
       title: "Review Your Data",
       description: "Verify your product catalog and sales history",
-      time: "2 minutes"
+      time: "2 minutes",
     },
     {
       step: 4,
       title: "Generate Forecasts",
       description: "Let AI analyze your data and create predictions",
-      time: "1 minute"
-    }
+      time: "1 minute",
+    },
   ];
 
   const docSections = [
@@ -62,8 +68,8 @@ export default function Docs() {
         { title: "Quick Start Guide", time: "5 min", popular: true },
         { title: "Account Setup", time: "3 min", popular: false },
         { title: "Data Import", time: "8 min", popular: true },
-        { title: "First Forecast", time: "4 min", popular: true }
-      ]
+        { title: "First Forecast", time: "4 min", popular: true },
+      ],
     },
     {
       icon: BarChart3,
@@ -73,8 +79,8 @@ export default function Docs() {
         { title: "How Forecasting Works", time: "10 min", popular: true },
         { title: "Improving Accuracy", time: "12 min", popular: true },
         { title: "Seasonal Adjustments", time: "8 min", popular: false },
-        { title: "New Product Forecasting", time: "6 min", popular: false }
-      ]
+        { title: "New Product Forecasting", time: "6 min", popular: false },
+      ],
     },
     {
       icon: Slack,
@@ -84,8 +90,8 @@ export default function Docs() {
         { title: "Slack Setup Guide", time: "7 min", popular: true },
         { title: "Purchase Order Approvals", time: "9 min", popular: true },
         { title: "Custom Notifications", time: "5 min", popular: false },
-        { title: "Team Collaboration", time: "6 min", popular: false }
-      ]
+        { title: "Team Collaboration", time: "6 min", popular: false },
+      ],
     },
     {
       icon: Code,
@@ -95,8 +101,8 @@ export default function Docs() {
         { title: "Authentication", time: "4 min", popular: true },
         { title: "Forecasts API", time: "8 min", popular: true },
         { title: "Webhooks", time: "6 min", popular: false },
-        { title: "Rate Limits", time: "3 min", popular: false }
-      ]
+        { title: "Rate Limits", time: "3 min", popular: false },
+      ],
     },
     {
       icon: Settings,
@@ -106,8 +112,8 @@ export default function Docs() {
         { title: "Billing & Payments", time: "5 min", popular: false },
         { title: "Team Management", time: "7 min", popular: false },
         { title: "Security Settings", time: "4 min", popular: false },
-        { title: "Data Export", time: "3 min", popular: false }
-      ]
+        { title: "Data Export", time: "3 min", popular: false },
+      ],
     },
     {
       icon: Users,
@@ -117,9 +123,9 @@ export default function Docs() {
         { title: "Inventory Optimization", time: "15 min", popular: true },
         { title: "Seasonal Planning", time: "12 min", popular: true },
         { title: "SKU Management", time: "10 min", popular: false },
-        { title: "Supplier Relationships", time: "8 min", popular: false }
-      ]
-    }
+        { title: "Supplier Relationships", time: "8 min", popular: false },
+      ],
+    },
   ];
 
   const popularGuides = [
@@ -127,32 +133,32 @@ export default function Docs() {
       title: "Complete Setup Guide",
       description: "End-to-end walkthrough from signup to first forecast",
       time: "20 min",
-      difficulty: "Beginner"
+      difficulty: "Beginner",
     },
     {
       title: "Slack Automation Mastery",
       description: "Advanced workflows for purchase order approvals",
       time: "25 min",
-      difficulty: "Intermediate"
+      difficulty: "Intermediate",
     },
     {
       title: "API Integration Guide",
       description: "Build custom integrations with our REST API",
       time: "30 min",
-      difficulty: "Advanced"
+      difficulty: "Advanced",
     },
     {
       title: "Forecast Accuracy Optimization",
       description: "Techniques to improve prediction accuracy",
       time: "18 min",
-      difficulty: "Intermediate"
-    }
+      difficulty: "Intermediate",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-background to-muted">
         <div className="container mx-auto text-center">
@@ -162,18 +168,20 @@ export default function Docs() {
               Documentation
             </Badge>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Everything you need to<br />
+              Everything you need to
+              <br />
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 master StockPilot
               </span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Comprehensive guides, API documentation, and best practices to help you get the most 
-              out of StockPilot's inventory intelligence platform.
+              Comprehensive guides, API documentation, and best practices to
+              help you get the most out of StockPilot's inventory intelligence
+              platform.
             </p>
             <div className="max-w-md mx-auto relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input 
+              <Input
                 placeholder="Search documentation..."
                 className="pl-10 h-12 text-lg"
               />
@@ -196,7 +204,10 @@ export default function Docs() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {quickStartSteps.map((step, index) => (
-              <Card key={index} className="border-border hover:shadow-lg transition-shadow relative">
+              <Card
+                key={index}
+                className="border-border hover:shadow-lg transition-shadow relative"
+              >
                 <CardHeader className="text-center">
                   <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-semibold mx-auto mb-4">
                     {step.step}
@@ -244,7 +255,10 @@ export default function Docs() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {docSections.map((section, index) => (
-              <Card key={index} className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group">
+              <Card
+                key={index}
+                className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group"
+              >
                 <CardHeader>
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -254,28 +268,34 @@ export default function Docs() {
                       <CardTitle className="group-hover:text-primary transition-colors">
                         {section.title}
                       </CardTitle>
-                      <CardDescription>
-                        {section.description}
-                      </CardDescription>
+                      <CardDescription>{section.description}</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     {section.articles.map((article, i) => (
-                      <div key={i} className="flex items-center justify-between group/item">
+                      <div
+                        key={i}
+                        className="flex items-center justify-between group/item"
+                      >
                         <div className="flex items-center space-x-2">
                           <span className="text-sm text-muted-foreground group-hover/item:text-foreground transition-colors">
                             {article.title}
                           </span>
                           {article.popular && (
-                            <Badge variant="secondary" className="text-xs px-1 py-0">
+                            <Badge
+                              variant="secondary"
+                              className="text-xs px-1 py-0"
+                            >
                               Popular
                             </Badge>
                           )}
                         </div>
                         <div className="flex items-center space-x-2">
-                          <span className="text-xs text-muted-foreground">{article.time}</span>
+                          <span className="text-xs text-muted-foreground">
+                            {article.time}
+                          </span>
                           <ArrowRight className="h-3 w-3 opacity-0 group-hover/item:opacity-100 transition-opacity" />
                         </div>
                       </div>
@@ -302,13 +322,22 @@ export default function Docs() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {popularGuides.map((guide, index) => (
-              <Card key={index} className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group">
+              <Card
+                key={index}
+                className="border-border hover:shadow-lg transition-all duration-300 cursor-pointer group"
+              >
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
-                        <Badge 
-                          variant={guide.difficulty === 'Beginner' ? 'default' : guide.difficulty === 'Intermediate' ? 'secondary' : 'outline'}
+                        <Badge
+                          variant={
+                            guide.difficulty === "Beginner"
+                              ? "default"
+                              : guide.difficulty === "Intermediate"
+                                ? "secondary"
+                                : "outline"
+                          }
                           className="text-xs"
                         >
                           {guide.difficulty}
@@ -477,13 +506,21 @@ export default function Docs() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/help">
-              <Button size="lg" variant="secondary" className="px-8 py-4 text-lg gap-2">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="px-8 py-4 text-lg gap-2"
+              >
                 Visit Help Center
                 <ArrowRight className="h-5 w-5" />
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-primary">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-primary"
+              >
                 Contact Support
               </Button>
             </Link>
