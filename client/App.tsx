@@ -33,6 +33,9 @@ import DashboardPurchaseOrders from "./pages/DashboardPurchaseOrders";
 import DashboardAnalytics from "./pages/DashboardAnalytics";
 import DashboardReports from "./pages/DashboardReports";
 import DashboardAlerts from "./pages/DashboardAlerts";
+import DashboardTeam from "./pages/DashboardTeam";
+import DashboardSettings from "./pages/DashboardSettings";
+import DashboardIntegrations from "./pages/DashboardIntegrations";
 import { DashboardSubPage } from "./components/DashboardSubPage";
 
 const queryClient = new QueryClient();
