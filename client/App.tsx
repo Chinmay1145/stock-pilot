@@ -27,6 +27,12 @@ import Integrations from "./pages/Integrations";
 import ApiDocs from "./pages/ApiDocs";
 import Docs from "./pages/Docs";
 import Dashboard from "./pages/Dashboard";
+import DashboardForecasts from "./pages/DashboardForecasts";
+import DashboardInventory from "./pages/DashboardInventory";
+import DashboardPurchaseOrders from "./pages/DashboardPurchaseOrders";
+import DashboardAnalytics from "./pages/DashboardAnalytics";
+import DashboardReports from "./pages/DashboardReports";
+import DashboardAlerts from "./pages/DashboardAlerts";
 import { DashboardSubPage } from "./components/DashboardSubPage";
 
 const queryClient = new QueryClient();
