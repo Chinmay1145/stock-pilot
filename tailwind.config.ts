@@ -98,6 +98,7 @@ export default {
         "fade-in": "fade-in 0.6s ease-out",
         "slide-up": "slide-up 0.8s ease-out",
         "scale-in": "scale-in 0.4s ease-out",
+        "theme-transition": "theme-transition 0.3s ease-in-out",
       },
     },
   },
