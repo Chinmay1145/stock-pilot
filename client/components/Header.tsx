@@ -51,6 +51,7 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             <Link to="/login">
               <Button variant="ghost">Sign In</Button>
             </Link>
