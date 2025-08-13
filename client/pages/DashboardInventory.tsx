@@ -1,17 +1,29 @@
 import { useState, useEffect } from "react";
 import { DashboardLayout } from "@/components/DashboardLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { dashboardData } from "@/lib/dashboard-data";
-import { 
-  Package, 
-  AlertTriangle, 
+import {
+  Package,
+  AlertTriangle,
   TrendingUp,
   TrendingDown,
   Search,
@@ -23,7 +35,7 @@ import {
   Warehouse,
   DollarSign,
   Calendar,
-  Filter
+  Filter,
 } from "lucide-react";
 
 interface InventoryItem {
@@ -39,125 +51,125 @@ interface InventoryItem {
   category: string;
   supplier: string;
   unitCost: number;
-  status: 'in_stock' | 'low_stock' | 'out_of_stock' | 'overstock';
-  movement: 'up' | 'down' | 'stable';
+  status: "in_stock" | "low_stock" | "out_of_stock" | "overstock";
+  movement: "up" | "down" | "stable";
   salesVelocity: number;
 }
 
 const mockInventory: InventoryItem[] = [
   {
-    sku: 'TECH-001',
-    productName: 'Wireless Headphones Pro',
+    sku: "TECH-001",
+    productName: "Wireless Headphones Pro",
     currentStock: 245,
     minStockLevel: 50,
     maxStockLevel: 500,
     daysOfStock: 18,
     inventoryValue: 12250,
-    lastRestocked: '2024-01-10T00:00:00Z',
-    location: 'Warehouse A',
-    category: 'Electronics',
-    supplier: 'TechSupply Co.',
+    lastRestocked: "2024-01-10T00:00:00Z",
+    location: "Warehouse A",
+    category: "Electronics",
+    supplier: "TechSupply Co.",
     unitCost: 50,
-    status: 'in_stock',
-    movement: 'down',
-    salesVelocity: 13.6
+    status: "in_stock",
+    movement: "down",
+    salesVelocity: 13.6,
   },
   {
-    sku: 'FASH-002',
-    productName: 'Premium Cotton T-Shirt',
+    sku: "FASH-002",
+    productName: "Premium Cotton T-Shirt",
     currentStock: 89,
     minStockLevel: 100,
     maxStockLevel: 300,
     daysOfStock: 12,
     inventoryValue: 1780,
-    lastRestocked: '2024-01-12T00:00:00Z',
-    location: 'Warehouse B',
-    category: 'Fashion',
-    supplier: 'Fashion Direct',
+    lastRestocked: "2024-01-12T00:00:00Z",
+    location: "Warehouse B",
+    category: "Fashion",
+    supplier: "Fashion Direct",
     unitCost: 20,
-    status: 'low_stock',
-    movement: 'down',
-    salesVelocity: 7.4
+    status: "low_stock",
+    movement: "down",
+    salesVelocity: 7.4,
   },
   {
-    sku: 'HOME-003',
-    productName: 'Smart LED Bulb',
+    sku: "HOME-003",
+    productName: "Smart LED Bulb",
     currentStock: 456,
     minStockLevel: 75,
     maxStockLevel: 400,
     daysOfStock: 45,
     inventoryValue: 6840,
-    lastRestocked: '2024-01-08T00:00:00Z',
-    location: 'Warehouse A',
-    category: 'Home',
-    supplier: 'SmartHome Inc.',
+    lastRestocked: "2024-01-08T00:00:00Z",
+    location: "Warehouse A",
+    category: "Home",
+    supplier: "SmartHome Inc.",
     unitCost: 15,
-    status: 'overstock',
-    movement: 'stable',
-    salesVelocity: 10.1
+    status: "overstock",
+    movement: "stable",
+    salesVelocity: 10.1,
   },
   {
-    sku: 'TECH-004',
-    productName: 'Bluetooth Speaker',
+    sku: "TECH-004",
+    productName: "Bluetooth Speaker",
     currentStock: 178,
     minStockLevel: 80,
     maxStockLevel: 350,
     daysOfStock: 14,
     inventoryValue: 13340,
-    lastRestocked: '2024-01-14T00:00:00Z',
-    location: 'Warehouse C',
-    category: 'Electronics',
-    supplier: 'AudioTech Ltd.',
+    lastRestocked: "2024-01-14T00:00:00Z",
+    location: "Warehouse C",
+    category: "Electronics",
+    supplier: "AudioTech Ltd.",
     unitCost: 75,
-    status: 'in_stock',
-    movement: 'up',
-    salesVelocity: 12.7
+    status: "in_stock",
+    movement: "up",
+    salesVelocity: 12.7,
   },
   {
-    sku: 'FASH-005',
-    productName: 'Denim Jeans Classic',
+    sku: "FASH-005",
+    productName: "Denim Jeans Classic",
     currentStock: 0,
     minStockLevel: 40,
     maxStockLevel: 200,
     daysOfStock: 0,
     inventoryValue: 0,
-    lastRestocked: '2024-01-05T00:00:00Z',
-    location: 'Warehouse B',
-    category: 'Fashion',
-    supplier: 'Denim Factory',
+    lastRestocked: "2024-01-05T00:00:00Z",
+    location: "Warehouse B",
+    category: "Fashion",
+    supplier: "Denim Factory",
     unitCost: 45,
-    status: 'out_of_stock',
-    movement: 'down',
-    salesVelocity: 0
+    status: "out_of_stock",
+    movement: "down",
+    salesVelocity: 0,
   },
   {
-    sku: 'HOME-006',
-    productName: 'Kitchen Knife Set',
+    sku: "HOME-006",
+    productName: "Kitchen Knife Set",
     currentStock: 67,
     minStockLevel: 25,
     maxStockLevel: 150,
     daysOfStock: 22,
     inventoryValue: 6700,
-    lastRestocked: '2024-01-11T00:00:00Z',
-    location: 'Warehouse A',
-    category: 'Home',
-    supplier: 'Kitchen Pro',
+    lastRestocked: "2024-01-11T00:00:00Z",
+    location: "Warehouse A",
+    category: "Home",
+    supplier: "Kitchen Pro",
     unitCost: 100,
-    status: 'in_stock',
-    movement: 'stable',
-    salesVelocity: 3.0
-  }
+    status: "in_stock",
+    movement: "stable",
+    salesVelocity: 3.0,
+  },
 ];
 
 export default function DashboardInventory() {
   const [inventory, setInventory] = useState<InventoryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState('all');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedStatus, setSelectedStatus] = useState('all');
-  const [sortBy, setSortBy] = useState('daysOfStock');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedStatus, setSelectedStatus] = useState("all");
+  const [sortBy, setSortBy] = useState("daysOfStock");
 
   useEffect(() => {
     loadInventoryData();
@@ -166,10 +178,10 @@ export default function DashboardInventory() {
   const loadInventoryData = async () => {
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       setInventory(mockInventory);
     } catch (error) {
-      console.error('Failed to load inventory data:', error);
+      console.error("Failed to load inventory data:", error);
     } finally {
       setLoading(false);
     }
@@ -178,38 +190,53 @@ export default function DashboardInventory() {
   const handleRefresh = async () => {
     setRefreshing(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       // Simulate stock changes
-      const updatedInventory = mockInventory.map(item => ({
+      const updatedInventory = mockInventory.map((item) => ({
         ...item,
-        currentStock: Math.max(0, item.currentStock + Math.floor((Math.random() - 0.5) * 20)),
-        daysOfStock: Math.max(0, item.daysOfStock + Math.floor((Math.random() - 0.5) * 5))
+        currentStock: Math.max(
+          0,
+          item.currentStock + Math.floor((Math.random() - 0.5) * 20),
+        ),
+        daysOfStock: Math.max(
+          0,
+          item.daysOfStock + Math.floor((Math.random() - 0.5) * 5),
+        ),
       }));
       setInventory(updatedInventory);
     } catch (error) {
-      console.error('Failed to refresh data:', error);
+      console.error("Failed to refresh data:", error);
     } finally {
       setRefreshing(false);
     }
   };
 
   const filteredInventory = inventory
-    .filter(item => 
-      item.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.sku.toLowerCase().includes(searchTerm.toLowerCase())
+    .filter(
+      (item) =>
+        item.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.sku.toLowerCase().includes(searchTerm.toLowerCase()),
     )
-    .filter(item => selectedLocation === 'all' || item.location === selectedLocation)
-    .filter(item => selectedCategory === 'all' || item.category === selectedCategory)
-    .filter(item => selectedStatus === 'all' || item.status === selectedStatus)
+    .filter(
+      (item) =>
+        selectedLocation === "all" || item.location === selectedLocation,
+    )
+    .filter(
+      (item) =>
+        selectedCategory === "all" || item.category === selectedCategory,
+    )
+    .filter(
+      (item) => selectedStatus === "all" || item.status === selectedStatus,
+    )
     .sort((a, b) => {
       switch (sortBy) {
-        case 'daysOfStock':
+        case "daysOfStock":
           return a.daysOfStock - b.daysOfStock;
-        case 'currentStock':
+        case "currentStock":
           return b.currentStock - a.currentStock;
-        case 'inventoryValue':
+        case "inventoryValue":
           return b.inventoryValue - a.inventoryValue;
-        case 'salesVelocity':
+        case "salesVelocity":
           return b.salesVelocity - a.salesVelocity;
         default:
           return 0;
@@ -218,29 +245,48 @@ export default function DashboardInventory() {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case 'in_stock': return <Badge variant="success">In Stock</Badge>;
-      case 'low_stock': return <Badge variant="warning">Low Stock</Badge>;
-      case 'out_of_stock': return <Badge variant="destructive">Out of Stock</Badge>;
-      case 'overstock': return <Badge variant="secondary">Overstock</Badge>;
-      default: return <Badge variant="outline">Unknown</Badge>;
+      case "in_stock":
+        return <Badge variant="success">In Stock</Badge>;
+      case "low_stock":
+        return <Badge variant="warning">Low Stock</Badge>;
+      case "out_of_stock":
+        return <Badge variant="destructive">Out of Stock</Badge>;
+      case "overstock":
+        return <Badge variant="secondary">Overstock</Badge>;
+      default:
+        return <Badge variant="outline">Unknown</Badge>;
     }
   };
 
   const getMovementIcon = (movement: string) => {
     switch (movement) {
-      case 'up': return <TrendingUp className="h-4 w-4 text-green-500" />;
-      case 'down': return <TrendingDown className="h-4 w-4 text-red-500" />;
-      default: return <div className="h-4 w-4 bg-gray-400 rounded-full"></div>;
+      case "up":
+        return <TrendingUp className="h-4 w-4 text-green-500" />;
+      case "down":
+        return <TrendingDown className="h-4 w-4 text-red-500" />;
+      default:
+        return <div className="h-4 w-4 bg-gray-400 rounded-full"></div>;
     }
   };
 
-  const locations = Array.from(new Set(inventory.map(item => item.location)));
-  const categories = Array.from(new Set(inventory.map(item => item.category)));
-  
-  const totalValue = inventory.reduce((sum, item) => sum + item.inventoryValue, 0);
-  const lowStockItems = inventory.filter(item => item.status === 'low_stock' || item.status === 'out_of_stock').length;
-  const overstockItems = inventory.filter(item => item.status === 'overstock').length;
-  const avgDaysOfStock = inventory.reduce((sum, item) => sum + item.daysOfStock, 0) / inventory.length;
+  const locations = Array.from(new Set(inventory.map((item) => item.location)));
+  const categories = Array.from(
+    new Set(inventory.map((item) => item.category)),
+  );
+
+  const totalValue = inventory.reduce(
+    (sum, item) => sum + item.inventoryValue,
+    0,
+  );
+  const lowStockItems = inventory.filter(
+    (item) => item.status === "low_stock" || item.status === "out_of_stock",
+  ).length;
+  const overstockItems = inventory.filter(
+    (item) => item.status === "overstock",
+  ).length;
+  const avgDaysOfStock =
+    inventory.reduce((sum, item) => sum + item.daysOfStock, 0) /
+    inventory.length;
 
   if (loading) {
     return (
@@ -262,15 +308,24 @@ export default function DashboardInventory() {
               <Package className="h-6 w-6 text-accent" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-foreground">Inventory Management</h1>
+              <h1 className="text-3xl font-bold text-foreground">
+                Inventory Management
+              </h1>
               <p className="text-muted-foreground">
                 Real-time stock levels and inventory optimization
               </p>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <Button variant="outline" size="sm" onClick={handleRefresh} disabled={refreshing}>
-              <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              disabled={refreshing}
+            >
+              <RefreshCw
+                className={`h-4 w-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
+              />
               Refresh
             </Button>
             <Button variant="outline" size="sm">
@@ -290,8 +345,12 @@ export default function DashboardInventory() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Total Value</p>
-                  <p className="text-2xl font-bold">${totalValue.toLocaleString()}</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Total Value
+                  </p>
+                  <p className="text-2xl font-bold">
+                    ${totalValue.toLocaleString()}
+                  </p>
                 </div>
                 <DollarSign className="h-8 w-8 text-primary" />
               </div>
@@ -305,7 +364,9 @@ export default function DashboardInventory() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Low/Out Stock</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Low/Out Stock
+                  </p>
                   <p className="text-2xl font-bold">{lowStockItems}</p>
                 </div>
                 <AlertTriangle className="h-8 w-8 text-destructive" />
@@ -320,7 +381,9 @@ export default function DashboardInventory() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Overstock</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Overstock
+                  </p>
                   <p className="text-2xl font-bold">{overstockItems}</p>
                 </div>
                 <Warehouse className="h-8 w-8 text-warning" />
@@ -335,8 +398,12 @@ export default function DashboardInventory() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Avg Days Stock</p>
-                  <p className="text-2xl font-bold">{avgDaysOfStock.toFixed(0)}</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Avg Days Stock
+                  </p>
+                  <p className="text-2xl font-bold">
+                    {avgDaysOfStock.toFixed(0)}
+                  </p>
                 </div>
                 <Calendar className="h-8 w-8 text-accent" />
               </div>
@@ -360,25 +427,35 @@ export default function DashboardInventory() {
                   className="pl-10"
                 />
               </div>
-              <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+              <Select
+                value={selectedLocation}
+                onValueChange={setSelectedLocation}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Location" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Locations</SelectItem>
-                  {locations.map(location => (
-                    <SelectItem key={location} value={location}>{location}</SelectItem>
+                  {locations.map((location) => (
+                    <SelectItem key={location} value={location}>
+                      {location}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <Select
+                value={selectedCategory}
+                onValueChange={setSelectedCategory}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Categories</SelectItem>
-                  {categories.map(category => (
-                    <SelectItem key={category} value={category}>{category}</SelectItem>
+                  {categories.map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -401,7 +478,9 @@ export default function DashboardInventory() {
                 <SelectContent>
                   <SelectItem value="daysOfStock">Days of Stock</SelectItem>
                   <SelectItem value="currentStock">Current Stock</SelectItem>
-                  <SelectItem value="inventoryValue">Inventory Value</SelectItem>
+                  <SelectItem value="inventoryValue">
+                    Inventory Value
+                  </SelectItem>
                   <SelectItem value="salesVelocity">Sales Velocity</SelectItem>
                 </SelectContent>
               </Select>
@@ -428,36 +507,50 @@ export default function DashboardInventory() {
                     <div className="flex items-center space-x-3">
                       <div>
                         <h3 className="font-semibold">{item.productName}</h3>
-                        <p className="text-sm text-muted-foreground">{item.sku}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {item.sku}
+                        </p>
                       </div>
                       <Badge variant="outline">{item.category}</Badge>
                       {getStatusBadge(item.status)}
                       {getMovementIcon(item.movement)}
                     </div>
-                    
+
                     <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 mt-3 lg:mt-0">
                       <div>
-                        <p className="text-xs text-muted-foreground">Current Stock</p>
+                        <p className="text-xs text-muted-foreground">
+                          Current Stock
+                        </p>
                         <p className="font-medium">{item.currentStock}</p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Days of Stock</p>
+                        <p className="text-xs text-muted-foreground">
+                          Days of Stock
+                        </p>
                         <p className="font-medium">{item.daysOfStock}</p>
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground">Min/Max</p>
-                        <p className="font-medium text-xs">{item.minStockLevel}/{item.maxStockLevel}</p>
+                        <p className="font-medium text-xs">
+                          {item.minStockLevel}/{item.maxStockLevel}
+                        </p>
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground">Value</p>
-                        <p className="font-medium">${item.inventoryValue.toLocaleString()}</p>
+                        <p className="font-medium">
+                          ${item.inventoryValue.toLocaleString()}
+                        </p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Location</p>
+                        <p className="text-xs text-muted-foreground">
+                          Location
+                        </p>
                         <p className="font-medium text-xs">{item.location}</p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Velocity</p>
+                        <p className="text-xs text-muted-foreground">
+                          Velocity
+                        </p>
                         <p className="font-medium">{item.salesVelocity}/day</p>
                       </div>
                     </div>
@@ -466,10 +559,12 @@ export default function DashboardInventory() {
                     <div className="mt-3">
                       <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span>Stock Level</span>
-                        <span>{item.currentStock}/{item.maxStockLevel}</span>
+                        <span>
+                          {item.currentStock}/{item.maxStockLevel}
+                        </span>
                       </div>
-                      <Progress 
-                        value={(item.currentStock / item.maxStockLevel) * 100} 
+                      <Progress
+                        value={(item.currentStock / item.maxStockLevel) * 100}
                         className="h-2"
                       />
                     </div>

@@ -1,39 +1,49 @@
 import { useLocation } from "react-router-dom";
 import { DashboardLayout } from "@/components/DashboardLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
-  BarChart3, 
-  Package, 
-  ShoppingCart, 
-  TrendingUp, 
-  FileText, 
+import {
+  BarChart3,
+  Package,
+  ShoppingCart,
+  TrendingUp,
+  FileText,
   AlertTriangle,
   Construction,
-  ArrowLeft
+  ArrowLeft,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const pageConfig: Record<string, {
-  title: string;
-  description: string;
-  icon: React.ElementType;
-  color: string;
-  features: string[];
-}> = {
+const pageConfig: Record<
+  string,
+  {
+    title: string;
+    description: string;
+    icon: React.ElementType;
+    color: string;
+    features: string[];
+  }
+> = {
   "/dashboard/forecasts": {
     title: "Demand Forecasts",
-    description: "AI-powered SKU-level demand predictions and accuracy tracking",
+    description:
+      "AI-powered SKU-level demand predictions and accuracy tracking",
     icon: BarChart3,
     color: "primary",
     features: [
       "12-week rolling forecasts for all SKUs",
-      "Confidence intervals and accuracy metrics", 
+      "Confidence intervals and accuracy metrics",
       "Seasonal pattern recognition",
       "What-if scenario modeling",
-      "Export forecast data"
-    ]
+      "Export forecast data",
+    ],
   },
   "/dashboard/inventory": {
     title: "Inventory Management",
@@ -45,8 +55,8 @@ const pageConfig: Record<string, {
       "Days of stock calculations",
       "Low stock and overstock alerts",
       "Inventory value tracking",
-      "Stock movement history"
-    ]
+      "Stock movement history",
+    ],
   },
   "/dashboard/purchase-orders": {
     title: "Purchase Orders",
@@ -58,8 +68,8 @@ const pageConfig: Record<string, {
       "Multi-step approval workflows",
       "Slack integration for approvals",
       "Supplier management and performance",
-      "Cost optimization recommendations"
-    ]
+      "Cost optimization recommendations",
+    ],
   },
   "/dashboard/analytics": {
     title: "Analytics & Insights",
@@ -71,8 +81,8 @@ const pageConfig: Record<string, {
       "Forecast accuracy trends",
       "Inventory turnover metrics",
       "Supplier performance analytics",
-      "Custom dashboard creation"
-    ]
+      "Custom dashboard creation",
+    ],
   },
   "/dashboard/reports": {
     title: "Reports & Exports",
@@ -84,8 +94,8 @@ const pageConfig: Record<string, {
       "Custom report builder",
       "Scheduled report delivery",
       "Data export in multiple formats",
-      "Historical data analysis"
-    ]
+      "Historical data analysis",
+    ],
   },
   "/dashboard/alerts": {
     title: "Alerts & Notifications",
@@ -97,9 +107,9 @@ const pageConfig: Record<string, {
       "Forecast accuracy warnings",
       "Supplier delay notifications",
       "Custom threshold configuration",
-      "Alert acknowledgment tracking"
-    ]
-  }
+      "Alert acknowledgment tracking",
+    ],
+  },
 };
 
 export function DashboardSubPage() {
@@ -137,11 +147,15 @@ export function DashboardSubPage() {
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center space-x-4">
-          <div className={`w-12 h-12 bg-${config.color}/10 rounded-lg flex items-center justify-center`}>
+          <div
+            className={`w-12 h-12 bg-${config.color}/10 rounded-lg flex items-center justify-center`}
+          >
             <IconComponent className={`h-6 w-6 text-${config.color}`} />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-foreground">{config.title}</h1>
+            <h1 className="text-3xl font-bold text-foreground">
+              {config.title}
+            </h1>
             <p className="text-muted-foreground">{config.description}</p>
           </div>
         </div>
@@ -187,8 +201,8 @@ export function DashboardSubPage() {
                 <Badge variant="secondary">Development Status</Badge>
               </div>
               <p className="text-sm text-muted-foreground">
-                We're actively working on this feature. Want to be notified when it's ready? 
-                Contact our team for early access updates.
+                We're actively working on this feature. Want to be notified when
+                it's ready? Contact our team for early access updates.
               </p>
             </div>
           </CardContent>

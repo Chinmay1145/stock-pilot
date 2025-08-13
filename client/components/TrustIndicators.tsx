@@ -7,33 +7,33 @@ export function TrustIndicators() {
     {
       icon: Shield,
       label: "SOC 2 Type II",
-      description: "Security & Privacy Certified"
+      description: "Security & Privacy Certified",
     },
     {
       icon: Lock,
       label: "256-bit SSL",
-      description: "Bank-level Encryption"
+      description: "Bank-level Encryption",
     },
     {
       icon: CheckCircle,
       label: "GDPR Compliant",
-      description: "EU Privacy Standards"
+      description: "EU Privacy Standards",
     },
     {
       icon: Award,
       label: "ISO 27001",
-      description: "Information Security"
+      description: "Information Security",
     },
     {
       icon: Globe,
       label: "99.9% Uptime",
-      description: "Enterprise SLA"
+      description: "Enterprise SLA",
     },
     {
       icon: Users,
       label: "500+ Customers",
-      description: "Trusted Worldwide"
-    }
+      description: "Trusted Worldwide",
+    },
   ];
 
   return (
@@ -47,10 +47,13 @@ export function TrustIndicators() {
             Your data is protected by industry-leading security standards
           </p>
         </div>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
           {indicators.map((indicator, index) => (
-            <Card key={index} className="border-border/50 hover:shadow-md transition-shadow cursor-pointer group">
+            <Card
+              key={index}
+              className="border-border/50 hover:shadow-md transition-shadow cursor-pointer group"
+            >
               <CardContent className="p-4 text-center">
                 <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2 group-hover:bg-primary/20 transition-colors">
                   <indicator.icon className="h-4 w-4 text-primary" />

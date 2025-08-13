@@ -1,29 +1,35 @@
 import { useState, useEffect } from "react";
 import { DashboardLayout } from "@/components/DashboardLayout";
-import { 
-  MetricCard, 
-  AlertsWidget, 
-  InventoryStatusWidget, 
+import {
+  MetricCard,
+  AlertsWidget,
+  InventoryStatusWidget,
   RecentActivityWidget,
-  ForecastAccuracyWidget 
+  ForecastAccuracyWidget,
 } from "@/components/dashboard/DashboardWidgets";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { dashboardData, type DashboardStats } from "@/lib/dashboard-data";
-import { 
-  DollarSign, 
-  Package, 
-  TrendingUp, 
-  AlertTriangle, 
+import {
+  DollarSign,
+  Package,
+  TrendingUp,
+  AlertTriangle,
   ShoppingCart,
   Target,
   Banknote,
   BarChart3,
   RefreshCw,
   Calendar,
-  Download
+  Download,
 } from "lucide-react";
 
 export default function Dashboard() {
@@ -39,46 +45,71 @@ export default function Dashboard() {
   // Generate mock activities
   const recentActivities = [
     {
-      id: '1',
-      type: 'forecast_updated' as const,
-      title: 'Forecast Updated',
-      description: 'TECH-001 forecast updated with 94% confidence',
+      id: "1",
+      type: "forecast_updated" as const,
+      title: "Forecast Updated",
+      description: "TECH-001 forecast updated with 94% confidence",
       timestamp: new Date(Date.now() - 1000 * 60 * 15).toISOString(),
-      user: 'AI System'
+      user: "AI System",
     },
     {
-      id: '2',
-      type: 'po_approved' as const,
-      title: 'Purchase Order Approved',
-      description: 'PO-156 for Wireless Headphones approved',
+      id: "2",
+      type: "po_approved" as const,
+      title: "Purchase Order Approved",
+      description: "PO-156 for Wireless Headphones approved",
       timestamp: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
-      user: 'John Doe'
+      user: "John Doe",
     },
     {
-      id: '3',
-      type: 'alert_created' as const,
-      title: 'Low Stock Alert',
-      description: 'Premium Cotton T-Shirt below threshold',
+      id: "3",
+      type: "alert_created" as const,
+      title: "Low Stock Alert",
+      description: "Premium Cotton T-Shirt below threshold",
       timestamp: new Date(Date.now() - 1000 * 60 * 120).toISOString(),
-      user: 'System'
+      user: "System",
     },
     {
-      id: '4',
-      type: 'stock_updated' as const,
-      title: 'Stock Updated',
-      description: 'Bluetooth Speaker stock increased by 200 units',
+      id: "4",
+      type: "stock_updated" as const,
+      title: "Stock Updated",
+      description: "Bluetooth Speaker stock increased by 200 units",
       timestamp: new Date(Date.now() - 1000 * 60 * 180).toISOString(),
-      user: 'Sarah Smith'
+      user: "Sarah Smith",
     },
   ];
 
   // Generate mock forecast accuracy data
   const forecastAccuracy = [
-    { sku: 'TECH-001', productName: 'Wireless Headphones Pro', accuracy: 94.2, trend: 'up' as const },
-    { sku: 'FASH-002', productName: 'Premium Cotton T-Shirt', accuracy: 91.8, trend: 'stable' as const },
-    { sku: 'HOME-003', productName: 'Smart LED Bulb', accuracy: 89.5, trend: 'down' as const },
-    { sku: 'TECH-004', productName: 'Bluetooth Speaker', accuracy: 96.1, trend: 'up' as const },
-    { sku: 'FASH-005', productName: 'Denim Jeans Classic', accuracy: 87.3, trend: 'down' as const },
+    {
+      sku: "TECH-001",
+      productName: "Wireless Headphones Pro",
+      accuracy: 94.2,
+      trend: "up" as const,
+    },
+    {
+      sku: "FASH-002",
+      productName: "Premium Cotton T-Shirt",
+      accuracy: 91.8,
+      trend: "stable" as const,
+    },
+    {
+      sku: "HOME-003",
+      productName: "Smart LED Bulb",
+      accuracy: 89.5,
+      trend: "down" as const,
+    },
+    {
+      sku: "TECH-004",
+      productName: "Bluetooth Speaker",
+      accuracy: 96.1,
+      trend: "up" as const,
+    },
+    {
+      sku: "FASH-005",
+      productName: "Denim Jeans Classic",
+      accuracy: 87.3,
+      trend: "down" as const,
+    },
   ];
 
   useEffect(() => {
@@ -89,11 +120,11 @@ export default function Dashboard() {
     setLoading(true);
     try {
       // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       const dashboardStats = dashboardData.getStats();
       setStats(dashboardStats);
     } catch (error) {
-      console.error('Failed to load dashboard data:', error);
+      console.error("Failed to load dashboard data:", error);
     } finally {
       setLoading(false);
     }
@@ -106,7 +137,7 @@ export default function Dashboard() {
       const dashboardStats = dashboardData.getStats();
       setStats(dashboardStats);
     } catch (error) {
-      console.error('Failed to refresh data:', error);
+      console.error("Failed to refresh data:", error);
     } finally {
       setRefreshing(false);
     }
@@ -134,8 +165,15 @@ export default function Dashboard() {
             </p>
           </div>
           <div className="flex items-center space-x-3">
-            <Button variant="outline" size="sm" onClick={handleRefresh} disabled={refreshing}>
-              <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              disabled={refreshing}
+            >
+              <RefreshCw
+                className={`h-4 w-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
+              />
               Refresh
             </Button>
             <Button variant="outline" size="sm">
@@ -240,25 +278,35 @@ export default function Dashboard() {
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">Quick Actions</CardTitle>
-            <CardDescription>
-              Common tasks and shortcuts
-            </CardDescription>
+            <CardDescription>Common tasks and shortcuts</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+              <Button
+                variant="outline"
+                className="h-auto p-4 flex flex-col items-center space-y-2"
+              >
                 <BarChart3 className="h-6 w-6" />
                 <span className="text-sm">View Forecasts</span>
               </Button>
-              <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+              <Button
+                variant="outline"
+                className="h-auto p-4 flex flex-col items-center space-y-2"
+              >
                 <ShoppingCart className="h-6 w-6" />
                 <span className="text-sm">Create PO</span>
               </Button>
-              <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+              <Button
+                variant="outline"
+                className="h-auto p-4 flex flex-col items-center space-y-2"
+              >
                 <Package className="h-6 w-6" />
                 <span className="text-sm">Update Stock</span>
               </Button>
-              <Button variant="outline" className="h-auto p-4 flex flex-col items-center space-y-2">
+              <Button
+                variant="outline"
+                className="h-auto p-4 flex flex-col items-center space-y-2"
+              >
                 <Download className="h-6 w-6" />
                 <span className="text-sm">Export Data</span>
               </Button>
@@ -282,7 +330,9 @@ export default function Dashboard() {
                 <span className="text-sm font-medium">1,247</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Avg Order Value</span>
+                <span className="text-sm text-muted-foreground">
+                  Avg Order Value
+                </span>
                 <span className="text-sm font-medium">$1,990</span>
               </div>
             </CardContent>
@@ -295,14 +345,18 @@ export default function Dashboard() {
             <CardContent className="space-y-3">
               <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">In Stock</span>
-                <Badge variant="success">{stats.totalSKUs - stats.outOfStockSKUs - stats.lowStockSKUs}</Badge>
+                <Badge variant="success">
+                  {stats.totalSKUs - stats.outOfStockSKUs - stats.lowStockSKUs}
+                </Badge>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">Low Stock</span>
                 <Badge variant="warning">{stats.lowStockSKUs}</Badge>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Out of Stock</span>
+                <span className="text-sm text-muted-foreground">
+                  Out of Stock
+                </span>
                 <Badge variant="destructive">{stats.outOfStockSKUs}</Badge>
               </div>
             </CardContent>
@@ -315,15 +369,23 @@ export default function Dashboard() {
             <CardContent className="space-y-3">
               <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">Accuracy</span>
-                <span className="text-sm font-medium">{stats.averageForecastAccuracy.toFixed(1)}%</span>
+                <span className="text-sm font-medium">
+                  {stats.averageForecastAccuracy.toFixed(1)}%
+                </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Predictions</span>
+                <span className="text-sm text-muted-foreground">
+                  Predictions
+                </span>
                 <span className="text-sm font-medium">12,847</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Stockouts Prevented</span>
-                <span className="text-sm font-medium">{stats.stockoutsPrevented}</span>
+                <span className="text-sm text-muted-foreground">
+                  Stockouts Prevented
+                </span>
+                <span className="text-sm font-medium">
+                  {stats.stockoutsPrevented}
+                </span>
               </div>
             </CardContent>
           </Card>

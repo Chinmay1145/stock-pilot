@@ -1,18 +1,30 @@
 import { useState, useEffect } from "react";
 import { DashboardLayout } from "@/components/DashboardLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { dashboardData } from "@/lib/dashboard-data";
-import { 
-  BarChart3, 
-  TrendingUp, 
-  TrendingDown, 
+import {
+  BarChart3,
+  TrendingUp,
+  TrendingDown,
   Minus,
   Search,
   Download,
@@ -21,7 +33,7 @@ import {
   AlertTriangle,
   CheckCircle,
   Calendar,
-  Filter
+  Filter,
 } from "lucide-react";
 
 interface ForecastData {
@@ -31,108 +43,108 @@ interface ForecastData {
   forecastDemand: number;
   accuracy: number;
   confidence: number;
-  trend: 'up' | 'down' | 'stable';
+  trend: "up" | "down" | "stable";
   daysToStockout: number | null;
   suggestedOrder: number;
   lastUpdated: string;
   category: string;
-  seasonality: 'high' | 'medium' | 'low';
+  seasonality: "high" | "medium" | "low";
 }
 
 const mockForecasts: ForecastData[] = [
   {
-    sku: 'TECH-001',
-    productName: 'Wireless Headphones Pro',
+    sku: "TECH-001",
+    productName: "Wireless Headphones Pro",
     currentStock: 245,
     forecastDemand: 180,
     accuracy: 94.2,
     confidence: 92,
-    trend: 'up',
+    trend: "up",
     daysToStockout: 8,
     suggestedOrder: 500,
-    lastUpdated: '2024-01-15T10:30:00Z',
-    category: 'Electronics',
-    seasonality: 'low'
+    lastUpdated: "2024-01-15T10:30:00Z",
+    category: "Electronics",
+    seasonality: "low",
   },
   {
-    sku: 'FASH-002',
-    productName: 'Premium Cotton T-Shirt',
+    sku: "FASH-002",
+    productName: "Premium Cotton T-Shirt",
     currentStock: 89,
     forecastDemand: 220,
     accuracy: 91.8,
     confidence: 88,
-    trend: 'up',
+    trend: "up",
     daysToStockout: 3,
     suggestedOrder: 800,
-    lastUpdated: '2024-01-15T10:30:00Z',
-    category: 'Fashion',
-    seasonality: 'high'
+    lastUpdated: "2024-01-15T10:30:00Z",
+    category: "Fashion",
+    seasonality: "high",
   },
   {
-    sku: 'HOME-003',
-    productName: 'Smart LED Bulb',
+    sku: "HOME-003",
+    productName: "Smart LED Bulb",
     currentStock: 456,
     forecastDemand: 95,
     accuracy: 89.5,
     confidence: 85,
-    trend: 'stable',
+    trend: "stable",
     daysToStockout: 28,
     suggestedOrder: 0,
-    lastUpdated: '2024-01-15T10:30:00Z',
-    category: 'Home',
-    seasonality: 'low'
+    lastUpdated: "2024-01-15T10:30:00Z",
+    category: "Home",
+    seasonality: "low",
   },
   {
-    sku: 'TECH-004',
-    productName: 'Bluetooth Speaker',
+    sku: "TECH-004",
+    productName: "Bluetooth Speaker",
     currentStock: 178,
     forecastDemand: 310,
     accuracy: 96.1,
     confidence: 94,
-    trend: 'up',
+    trend: "up",
     daysToStockout: 4,
     suggestedOrder: 600,
-    lastUpdated: '2024-01-15T10:30:00Z',
-    category: 'Electronics',
-    seasonality: 'medium'
+    lastUpdated: "2024-01-15T10:30:00Z",
+    category: "Electronics",
+    seasonality: "medium",
   },
   {
-    sku: 'FASH-005',
-    productName: 'Denim Jeans Classic',
+    sku: "FASH-005",
+    productName: "Denim Jeans Classic",
     currentStock: 234,
     forecastDemand: 140,
     accuracy: 87.3,
     confidence: 81,
-    trend: 'down',
+    trend: "down",
     daysToStockout: 12,
     suggestedOrder: 300,
-    lastUpdated: '2024-01-15T10:30:00Z',
-    category: 'Fashion',
-    seasonality: 'medium'
+    lastUpdated: "2024-01-15T10:30:00Z",
+    category: "Fashion",
+    seasonality: "medium",
   },
   {
-    sku: 'HOME-006',
-    productName: 'Kitchen Knife Set',
+    sku: "HOME-006",
+    productName: "Kitchen Knife Set",
     currentStock: 67,
     forecastDemand: 85,
     accuracy: 93.7,
     confidence: 90,
-    trend: 'stable',
+    trend: "stable",
     daysToStockout: 6,
     suggestedOrder: 200,
-    lastUpdated: '2024-01-15T10:30:00Z',
-    category: 'Home',
-    seasonality: 'high'
-  }
+    lastUpdated: "2024-01-15T10:30:00Z",
+    category: "Home",
+    seasonality: "high",
+  },
 ];
 
 export default function DashboardForecasts() {
   const [forecasts, setForecasts] = useState<ForecastData[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [sortBy, setSortBy] = useState('daysToStockout');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("daysToStockout");
 
   useEffect(() => {
     loadForecastData();
@@ -141,10 +153,10 @@ export default function DashboardForecasts() {
   const loadForecastData = async () => {
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       setForecasts(mockForecasts);
     } catch (error) {
-      console.error('Failed to load forecast data:', error);
+      console.error("Failed to load forecast data:", error);
     } finally {
       setLoading(false);
     }
@@ -153,35 +165,45 @@ export default function DashboardForecasts() {
   const handleRefresh = async () => {
     setRefreshing(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       // Simulate slight data changes
-      const updatedForecasts = mockForecasts.map(forecast => ({
+      const updatedForecasts = mockForecasts.map((forecast) => ({
         ...forecast,
-        accuracy: Math.max(85, Math.min(98, forecast.accuracy + (Math.random() - 0.5) * 2)),
-        confidence: Math.max(80, Math.min(95, forecast.confidence + (Math.random() - 0.5) * 3)),
-        lastUpdated: new Date().toISOString()
+        accuracy: Math.max(
+          85,
+          Math.min(98, forecast.accuracy + (Math.random() - 0.5) * 2),
+        ),
+        confidence: Math.max(
+          80,
+          Math.min(95, forecast.confidence + (Math.random() - 0.5) * 3),
+        ),
+        lastUpdated: new Date().toISOString(),
       }));
       setForecasts(updatedForecasts);
     } catch (error) {
-      console.error('Failed to refresh data:', error);
+      console.error("Failed to refresh data:", error);
     } finally {
       setRefreshing(false);
     }
   };
 
   const filteredForecasts = forecasts
-    .filter(forecast => 
-      forecast.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      forecast.sku.toLowerCase().includes(searchTerm.toLowerCase())
+    .filter(
+      (forecast) =>
+        forecast.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        forecast.sku.toLowerCase().includes(searchTerm.toLowerCase()),
     )
-    .filter(forecast => selectedCategory === 'all' || forecast.category === selectedCategory)
+    .filter(
+      (forecast) =>
+        selectedCategory === "all" || forecast.category === selectedCategory,
+    )
     .sort((a, b) => {
       switch (sortBy) {
-        case 'daysToStockout':
+        case "daysToStockout":
           return (a.daysToStockout || 999) - (b.daysToStockout || 999);
-        case 'accuracy':
+        case "accuracy":
           return b.accuracy - a.accuracy;
-        case 'demand':
+        case "demand":
           return b.forecastDemand - a.forecastDemand;
         default:
           return 0;
@@ -190,9 +212,12 @@ export default function DashboardForecasts() {
 
   const getTrendIcon = (trend: string) => {
     switch (trend) {
-      case 'up': return <TrendingUp className="h-4 w-4 text-green-500" />;
-      case 'down': return <TrendingDown className="h-4 w-4 text-red-500" />;
-      default: return <Minus className="h-4 w-4 text-gray-500" />;
+      case "up":
+        return <TrendingUp className="h-4 w-4 text-green-500" />;
+      case "down":
+        return <TrendingDown className="h-4 w-4 text-red-500" />;
+      default:
+        return <Minus className="h-4 w-4 text-gray-500" />;
     }
   };
 
@@ -203,10 +228,16 @@ export default function DashboardForecasts() {
     return <Badge variant="success">Safe</Badge>;
   };
 
-  const categories = Array.from(new Set(forecasts.map(f => f.category)));
-  const avgAccuracy = forecasts.reduce((sum, f) => sum + f.accuracy, 0) / forecasts.length;
-  const criticalItems = forecasts.filter(f => f.daysToStockout && f.daysToStockout <= 7).length;
-  const totalSuggestedOrders = forecasts.reduce((sum, f) => sum + f.suggestedOrder, 0);
+  const categories = Array.from(new Set(forecasts.map((f) => f.category)));
+  const avgAccuracy =
+    forecasts.reduce((sum, f) => sum + f.accuracy, 0) / forecasts.length;
+  const criticalItems = forecasts.filter(
+    (f) => f.daysToStockout && f.daysToStockout <= 7,
+  ).length;
+  const totalSuggestedOrders = forecasts.reduce(
+    (sum, f) => sum + f.suggestedOrder,
+    0,
+  );
 
   if (loading) {
     return (
@@ -228,15 +259,24 @@ export default function DashboardForecasts() {
               <BarChart3 className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-foreground">Demand Forecasts</h1>
+              <h1 className="text-3xl font-bold text-foreground">
+                Demand Forecasts
+              </h1>
               <p className="text-muted-foreground">
                 AI-powered SKU-level demand predictions and accuracy tracking
               </p>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <Button variant="outline" size="sm" onClick={handleRefresh} disabled={refreshing}>
-              <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              disabled={refreshing}
+            >
+              <RefreshCw
+                className={`h-4 w-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
+              />
               Refresh
             </Button>
             <Button variant="outline" size="sm">
@@ -252,8 +292,12 @@ export default function DashboardForecasts() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Avg Accuracy</p>
-                  <p className="text-2xl font-bold">{avgAccuracy.toFixed(1)}%</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Avg Accuracy
+                  </p>
+                  <p className="text-2xl font-bold">
+                    {avgAccuracy.toFixed(1)}%
+                  </p>
                 </div>
                 <Target className="h-8 w-8 text-primary" />
               </div>
@@ -265,7 +309,9 @@ export default function DashboardForecasts() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Critical Items</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Critical Items
+                  </p>
                   <p className="text-2xl font-bold">{criticalItems}</p>
                 </div>
                 <AlertTriangle className="h-8 w-8 text-destructive" />
@@ -280,7 +326,9 @@ export default function DashboardForecasts() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Total SKUs</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Total SKUs
+                  </p>
                   <p className="text-2xl font-bold">{forecasts.length}</p>
                 </div>
                 <BarChart3 className="h-8 w-8 text-accent" />
@@ -295,8 +343,12 @@ export default function DashboardForecasts() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Suggested Orders</p>
-                  <p className="text-2xl font-bold">{totalSuggestedOrders.toLocaleString()}</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Suggested Orders
+                  </p>
+                  <p className="text-2xl font-bold">
+                    {totalSuggestedOrders.toLocaleString()}
+                  </p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-success" />
               </div>
@@ -320,14 +372,19 @@ export default function DashboardForecasts() {
                   className="pl-10"
                 />
               </div>
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <Select
+                value={selectedCategory}
+                onValueChange={setSelectedCategory}
+              >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Categories</SelectItem>
-                  {categories.map(category => (
-                    <SelectItem key={category} value={category}>{category}</SelectItem>
+                  {categories.map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -336,7 +393,9 @@ export default function DashboardForecasts() {
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="daysToStockout">Days to Stockout</SelectItem>
+                  <SelectItem value="daysToStockout">
+                    Days to Stockout
+                  </SelectItem>
                   <SelectItem value="accuracy">Accuracy</SelectItem>
                   <SelectItem value="demand">Demand</SelectItem>
                 </SelectContent>
@@ -363,34 +422,52 @@ export default function DashboardForecasts() {
                   <div className="flex-1 space-y-2 lg:space-y-0">
                     <div className="flex items-center space-x-3">
                       <div>
-                        <h3 className="font-semibold">{forecast.productName}</h3>
-                        <p className="text-sm text-muted-foreground">{forecast.sku}</p>
+                        <h3 className="font-semibold">
+                          {forecast.productName}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {forecast.sku}
+                        </p>
                       </div>
                       <Badge variant="outline">{forecast.category}</Badge>
                       {getTrendIcon(forecast.trend)}
                     </div>
-                    
+
                     <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mt-3 lg:mt-0">
                       <div>
-                        <p className="text-xs text-muted-foreground">Current Stock</p>
+                        <p className="text-xs text-muted-foreground">
+                          Current Stock
+                        </p>
                         <p className="font-medium">{forecast.currentStock}</p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Forecast Demand</p>
+                        <p className="text-xs text-muted-foreground">
+                          Forecast Demand
+                        </p>
                         <p className="font-medium">{forecast.forecastDemand}</p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Accuracy</p>
-                        <p className="font-medium">{forecast.accuracy.toFixed(1)}%</p>
+                        <p className="text-xs text-muted-foreground">
+                          Accuracy
+                        </p>
+                        <p className="font-medium">
+                          {forecast.accuracy.toFixed(1)}%
+                        </p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Confidence</p>
+                        <p className="text-xs text-muted-foreground">
+                          Confidence
+                        </p>
                         <p className="font-medium">{forecast.confidence}%</p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Days to Stockout</p>
+                        <p className="text-xs text-muted-foreground">
+                          Days to Stockout
+                        </p>
                         <div className="flex items-center space-x-2">
-                          <p className="font-medium">{forecast.daysToStockout || 'Safe'}</p>
+                          <p className="font-medium">
+                            {forecast.daysToStockout || "Safe"}
+                          </p>
                           {getStockoutBadge(forecast.daysToStockout)}
                         </div>
                       </div>
@@ -400,8 +477,12 @@ export default function DashboardForecasts() {
                   <div className="flex items-center space-x-3 mt-4 lg:mt-0">
                     {forecast.suggestedOrder > 0 && (
                       <div className="text-right">
-                        <p className="text-xs text-muted-foreground">Suggested Order</p>
-                        <p className="font-semibold text-primary">{forecast.suggestedOrder} units</p>
+                        <p className="text-xs text-muted-foreground">
+                          Suggested Order
+                        </p>
+                        <p className="font-semibold text-primary">
+                          {forecast.suggestedOrder} units
+                        </p>
                       </div>
                     )}
                     <Button size="sm" variant="outline">

@@ -50,15 +50,30 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/forecasts" element={<DashboardForecasts />} />
-            <Route path="/dashboard/inventory" element={<DashboardInventory />} />
-            <Route path="/dashboard/purchase-orders" element={<DashboardPurchaseOrders />} />
-            <Route path="/dashboard/analytics" element={<DashboardAnalytics />} />
+            <Route
+              path="/dashboard/forecasts"
+              element={<DashboardForecasts />}
+            />
+            <Route
+              path="/dashboard/inventory"
+              element={<DashboardInventory />}
+            />
+            <Route
+              path="/dashboard/purchase-orders"
+              element={<DashboardPurchaseOrders />}
+            />
+            <Route
+              path="/dashboard/analytics"
+              element={<DashboardAnalytics />}
+            />
             <Route path="/dashboard/reports" element={<DashboardReports />} />
             <Route path="/dashboard/alerts" element={<DashboardAlerts />} />
             <Route path="/dashboard/team" element={<DashboardTeam />} />
             <Route path="/dashboard/settings" element={<DashboardSettings />} />
-            <Route path="/dashboard/integrations" element={<DashboardIntegrations />} />
+            <Route
+              path="/dashboard/integrations"
+              element={<DashboardIntegrations />}
+            />
             <Route path="/features" element={<Features />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/case-studies" element={<CaseStudies />} />

@@ -4,23 +4,23 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { 
-  BarChart3, 
-  Package, 
-  ShoppingCart, 
-  TrendingUp, 
-  Settings, 
-  Bell, 
-  FileText, 
-  Users, 
-  Menu, 
+import {
+  BarChart3,
+  Package,
+  ShoppingCart,
+  TrendingUp,
+  Settings,
+  Bell,
+  FileText,
+  Users,
+  Menu,
   X,
   Home,
   AlertTriangle,
   DollarSign,
   Slack,
   LogOut,
-  Search
+  Search,
 } from "lucide-react";
 
 interface DashboardLayoutProps {
@@ -32,13 +32,49 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const location = useLocation();
 
   const navigation = [
-    { name: "Overview", href: "/dashboard", icon: Home, current: location.pathname === "/dashboard" },
-    { name: "Forecasts", href: "/dashboard/forecasts", icon: BarChart3, current: location.pathname === "/dashboard/forecasts" },
-    { name: "Inventory", href: "/dashboard/inventory", icon: Package, current: location.pathname === "/dashboard/inventory" },
-    { name: "Purchase Orders", href: "/dashboard/purchase-orders", icon: ShoppingCart, current: location.pathname === "/dashboard/purchase-orders" },
-    { name: "Analytics", href: "/dashboard/analytics", icon: TrendingUp, current: location.pathname === "/dashboard/analytics" },
-    { name: "Reports", href: "/dashboard/reports", icon: FileText, current: location.pathname === "/dashboard/reports" },
-    { name: "Alerts", href: "/dashboard/alerts", icon: AlertTriangle, current: location.pathname === "/dashboard/alerts", badge: "3" },
+    {
+      name: "Overview",
+      href: "/dashboard",
+      icon: Home,
+      current: location.pathname === "/dashboard",
+    },
+    {
+      name: "Forecasts",
+      href: "/dashboard/forecasts",
+      icon: BarChart3,
+      current: location.pathname === "/dashboard/forecasts",
+    },
+    {
+      name: "Inventory",
+      href: "/dashboard/inventory",
+      icon: Package,
+      current: location.pathname === "/dashboard/inventory",
+    },
+    {
+      name: "Purchase Orders",
+      href: "/dashboard/purchase-orders",
+      icon: ShoppingCart,
+      current: location.pathname === "/dashboard/purchase-orders",
+    },
+    {
+      name: "Analytics",
+      href: "/dashboard/analytics",
+      icon: TrendingUp,
+      current: location.pathname === "/dashboard/analytics",
+    },
+    {
+      name: "Reports",
+      href: "/dashboard/reports",
+      icon: FileText,
+      current: location.pathname === "/dashboard/reports",
+    },
+    {
+      name: "Alerts",
+      href: "/dashboard/alerts",
+      icon: AlertTriangle,
+      current: location.pathname === "/dashboard/alerts",
+      badge: "3",
+    },
   ];
 
   const secondaryNavigation = [
@@ -52,10 +88,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Mobile sidebar */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="fixed inset-0 bg-black/50" onClick={() => setSidebarOpen(false)} />
+          <div
+            className="fixed inset-0 bg-black/50"
+            onClick={() => setSidebarOpen(false)}
+          />
           <div className="fixed left-0 top-0 bottom-0 w-64 bg-background border-r border-border">
-            <SidebarContent 
-              navigation={navigation} 
+            <SidebarContent
+              navigation={navigation}
               secondaryNavigation={secondaryNavigation}
               onClose={() => setSidebarOpen(false)}
             />
@@ -65,7 +104,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Desktop sidebar */}
       <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
-        <SidebarContent navigation={navigation} secondaryNavigation={secondaryNavigation} />
+        <SidebarContent
+          navigation={navigation}
+          secondaryNavigation={secondaryNavigation}
+        />
       </div>
 
       {/* Main content */}
@@ -92,7 +134,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   />
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-4">
                 <Button variant="ghost" size="sm" className="relative">
                   <Bell className="h-5 w-5" />
@@ -103,8 +145,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 <ThemeToggle />
                 <div className="flex items-center space-x-3">
                   <div className="hidden sm:block text-right">
-                    <p className="text-sm font-medium text-foreground">John Doe</p>
-                    <p className="text-xs text-muted-foreground">TechStyle Fashion</p>
+                    <p className="text-sm font-medium text-foreground">
+                      John Doe
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      TechStyle Fashion
+                    </p>
                   </div>
                   <div className="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center text-white text-sm font-semibold">
                     JD
@@ -116,21 +162,19 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </header>
 
         {/* Page content */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
-          {children}
-        </main>
+        <main className="flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
       </div>
     </div>
   );
 }
 
-function SidebarContent({ 
-  navigation, 
-  secondaryNavigation, 
-  onClose 
-}: { 
-  navigation: any[]; 
-  secondaryNavigation: any[]; 
+function SidebarContent({
+  navigation,
+  secondaryNavigation,
+  onClose,
+}: {
+  navigation: any[];
+  secondaryNavigation: any[];
   onClose?: () => void;
 }) {
   return (
@@ -144,7 +188,12 @@ function SidebarContent({
           <span className="text-lg font-bold text-foreground">StockPilot</span>
         </Link>
         {onClose && (
-          <Button variant="ghost" size="sm" onClick={onClose} className="lg:hidden">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="lg:hidden"
+          >
             <X className="h-4 w-4" />
           </Button>
         )}
@@ -187,7 +236,7 @@ function SidebarContent({
             <span>{item.name}</span>
           </Link>
         ))}
-        
+
         <Link
           to="/"
           className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
@@ -203,7 +252,9 @@ function SidebarContent({
           <CardContent className="p-4">
             <div className="flex items-center space-x-2 mb-2">
               <DollarSign className="h-4 w-4 text-primary" />
-              <span className="text-sm font-medium text-foreground">Upgrade Plan</span>
+              <span className="text-sm font-medium text-foreground">
+                Upgrade Plan
+              </span>
             </div>
             <p className="text-xs text-muted-foreground mb-3">
               Unlock advanced analytics and unlimited SKUs

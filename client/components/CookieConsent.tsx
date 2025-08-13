@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { Cookie, Shield, X } from "lucide-react";
@@ -41,13 +47,14 @@ export function CookieConsent() {
               <div>
                 <CardTitle className="text-lg">We value your privacy</CardTitle>
                 <CardDescription className="mt-1">
-                  We use cookies to enhance your experience and improve our services
+                  We use cookies to enhance your experience and improve our
+                  services
                 </CardDescription>
               </div>
             </div>
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={handleDecline}
               className="text-muted-foreground hover:text-foreground"
             >
@@ -59,8 +66,8 @@ export function CookieConsent() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex-1">
               <p className="text-sm text-muted-foreground">
-                We use essential cookies for functionality and analytics cookies to understand how you use our site. 
-                {" "}
+                We use essential cookies for functionality and analytics cookies
+                to understand how you use our site.{" "}
                 <Link to="/privacy" className="text-primary hover:underline">
                   Learn more about our privacy practices
                 </Link>

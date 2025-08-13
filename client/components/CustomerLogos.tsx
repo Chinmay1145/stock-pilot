@@ -13,7 +13,7 @@ export function CustomerLogos() {
     { name: "Urban Outfitters", logo: "🏙️" },
     { name: "Digital Dynamics", logo: "💻" },
     { name: "Creative Commerce", logo: "🎨" },
-    { name: "Future Foods", logo: "🍽️" }
+    { name: "Future Foods", logo: "🍽️" },
   ];
 
   return (
@@ -24,12 +24,15 @@ export function CustomerLogos() {
             Trusted by Leading Brands
           </p>
         </div>
-        
+
         <div className="relative overflow-hidden">
           <div className="flex animate-scroll gap-8 items-center">
             {/* First set */}
             {customers.map((customer, index) => (
-              <Card key={`first-${index}`} className="flex-shrink-0 border-border/30 bg-background/50 hover:bg-background/80 transition-colors">
+              <Card
+                key={`first-${index}`}
+                className="flex-shrink-0 border-border/30 bg-background/50 hover:bg-background/80 transition-colors"
+              >
                 <div className="flex items-center space-x-3 p-4 min-w-[200px]">
                   <div className="text-2xl">{customer.logo}</div>
                   <span className="font-medium text-foreground text-sm whitespace-nowrap">
@@ -40,7 +43,10 @@ export function CustomerLogos() {
             ))}
             {/* Duplicate set for seamless loop */}
             {customers.map((customer, index) => (
-              <Card key={`second-${index}`} className="flex-shrink-0 border-border/30 bg-background/50 hover:bg-background/80 transition-colors">
+              <Card
+                key={`second-${index}`}
+                className="flex-shrink-0 border-border/30 bg-background/50 hover:bg-background/80 transition-colors"
+              >
                 <div className="flex items-center space-x-3 p-4 min-w-[200px]">
                   <div className="text-2xl">{customer.logo}</div>
                   <span className="font-medium text-foreground text-sm whitespace-nowrap">
@@ -51,10 +57,11 @@ export function CustomerLogos() {
             ))}
           </div>
         </div>
-        
+
         <div className="text-center mt-8">
           <p className="text-sm text-muted-foreground">
-            Join 500+ growing businesses optimizing their inventory with StockPilot
+            Join 500+ growing businesses optimizing their inventory with
+            StockPilot
           </p>
         </div>
       </div>

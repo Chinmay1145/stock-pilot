@@ -1,16 +1,28 @@
 import { useState, useEffect } from "react";
 import { DashboardLayout } from "@/components/DashboardLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { Separator } from "@/components/ui/separator";
-import { 
-  Settings, 
+import {
+  Settings,
   Save,
   RefreshCw,
   Bell,
@@ -20,7 +32,7 @@ import {
   Palette,
   Globe,
   Key,
-  AlertTriangle
+  AlertTriangle,
 } from "lucide-react";
 
 interface AppSettings {
@@ -55,11 +67,11 @@ interface AppSettings {
 
 const defaultSettings: AppSettings = {
   general: {
-    companyName: 'StockPilot Enterprise',
-    timezone: 'UTC-8',
-    currency: 'USD',
-    language: 'en',
-    dateFormat: 'MM/DD/YYYY'
+    companyName: "StockPilot Enterprise",
+    timezone: "UTC-8",
+    currency: "USD",
+    language: "en",
+    dateFormat: "MM/DD/YYYY",
   },
   notifications: {
     emailAlerts: true,
@@ -67,20 +79,20 @@ const defaultSettings: AppSettings = {
     lowStockThreshold: 7,
     forecastAccuracyThreshold: 85,
     dailyReports: true,
-    weeklyReports: true
+    weeklyReports: true,
   },
   security: {
     requireMFA: true,
     sessionTimeout: 480,
-    allowedDomains: ['company.com'],
-    auditLogging: true
+    allowedDomains: ["company.com"],
+    auditLogging: true,
   },
   data: {
     dataRetention: 365,
     autoBackup: true,
-    backupFrequency: 'daily',
-    exportFormats: ['CSV', 'Excel', 'PDF']
-  }
+    backupFrequency: "daily",
+    exportFormats: ["CSV", "Excel", "PDF"],
+  },
 };
 
 export default function DashboardSettings() {
@@ -96,10 +108,10 @@ export default function DashboardSettings() {
   const loadSettings = async () => {
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       setSettings(defaultSettings);
     } catch (error) {
-      console.error('Failed to load settings:', error);
+      console.error("Failed to load settings:", error);
     } finally {
       setLoading(false);
     }
@@ -108,23 +120,27 @@ export default function DashboardSettings() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       setHasChanges(false);
       // Show success message
     } catch (error) {
-      console.error('Failed to save settings:', error);
+      console.error("Failed to save settings:", error);
     } finally {
       setSaving(false);
     }
   };
 
-  const updateSetting = (section: keyof AppSettings, key: string, value: any) => {
-    setSettings(prev => ({
+  const updateSetting = (
+    section: keyof AppSettings,
+    key: string,
+    value: any,
+  ) => {
+    setSettings((prev) => ({
       ...prev,
       [section]: {
         ...prev[section],
-        [key]: value
-      }
+        [key]: value,
+      },
     }));
     setHasChanges(true);
   };
@@ -195,24 +211,36 @@ export default function DashboardSettings() {
                     <Input
                       id="companyName"
                       value={settings.general.companyName}
-                      onChange={(e) => updateSetting('general', 'companyName', e.target.value)}
+                      onChange={(e) =>
+                        updateSetting("general", "companyName", e.target.value)
+                      }
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="timezone">Timezone</Label>
-                    <Select 
-                      value={settings.general.timezone} 
-                      onValueChange={(value) => updateSetting('general', 'timezone', value)}
+                    <Select
+                      value={settings.general.timezone}
+                      onValueChange={(value) =>
+                        updateSetting("general", "timezone", value)
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="UTC-8">Pacific Time (UTC-8)</SelectItem>
-                        <SelectItem value="UTC-7">Mountain Time (UTC-7)</SelectItem>
-                        <SelectItem value="UTC-6">Central Time (UTC-6)</SelectItem>
-                        <SelectItem value="UTC-5">Eastern Time (UTC-5)</SelectItem>
+                        <SelectItem value="UTC-8">
+                          Pacific Time (UTC-8)
+                        </SelectItem>
+                        <SelectItem value="UTC-7">
+                          Mountain Time (UTC-7)
+                        </SelectItem>
+                        <SelectItem value="UTC-6">
+                          Central Time (UTC-6)
+                        </SelectItem>
+                        <SelectItem value="UTC-5">
+                          Eastern Time (UTC-5)
+                        </SelectItem>
                         <SelectItem value="UTC+0">UTC</SelectItem>
                       </SelectContent>
                     </Select>
@@ -220,9 +248,11 @@ export default function DashboardSettings() {
 
                   <div className="space-y-2">
                     <Label htmlFor="currency">Default Currency</Label>
-                    <Select 
-                      value={settings.general.currency} 
-                      onValueChange={(value) => updateSetting('general', 'currency', value)}
+                    <Select
+                      value={settings.general.currency}
+                      onValueChange={(value) =>
+                        updateSetting("general", "currency", value)
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue />
@@ -231,16 +261,20 @@ export default function DashboardSettings() {
                         <SelectItem value="USD">US Dollar (USD)</SelectItem>
                         <SelectItem value="EUR">Euro (EUR)</SelectItem>
                         <SelectItem value="GBP">British Pound (GBP)</SelectItem>
-                        <SelectItem value="CAD">Canadian Dollar (CAD)</SelectItem>
+                        <SelectItem value="CAD">
+                          Canadian Dollar (CAD)
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="dateFormat">Date Format</Label>
-                    <Select 
-                      value={settings.general.dateFormat} 
-                      onValueChange={(value) => updateSetting('general', 'dateFormat', value)}
+                    <Select
+                      value={settings.general.dateFormat}
+                      onValueChange={(value) =>
+                        updateSetting("general", "dateFormat", value)
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue />
@@ -280,7 +314,9 @@ export default function DashboardSettings() {
                     <Switch
                       id="emailAlerts"
                       checked={settings.notifications.emailAlerts}
-                      onCheckedChange={(checked) => updateSetting('notifications', 'emailAlerts', checked)}
+                      onCheckedChange={(checked) =>
+                        updateSetting("notifications", "emailAlerts", checked)
+                      }
                     />
                   </div>
 
@@ -288,7 +324,9 @@ export default function DashboardSettings() {
 
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <Label htmlFor="slackIntegration">Slack Integration</Label>
+                      <Label htmlFor="slackIntegration">
+                        Slack Integration
+                      </Label>
                       <p className="text-sm text-muted-foreground">
                         Send notifications to Slack channels
                       </p>
@@ -296,7 +334,13 @@ export default function DashboardSettings() {
                     <Switch
                       id="slackIntegration"
                       checked={settings.notifications.slackIntegration}
-                      onCheckedChange={(checked) => updateSetting('notifications', 'slackIntegration', checked)}
+                      onCheckedChange={(checked) =>
+                        updateSetting(
+                          "notifications",
+                          "slackIntegration",
+                          checked,
+                        )
+                      }
                     />
                   </div>
 
@@ -304,12 +348,20 @@ export default function DashboardSettings() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="lowStockThreshold">Low Stock Threshold (days)</Label>
+                      <Label htmlFor="lowStockThreshold">
+                        Low Stock Threshold (days)
+                      </Label>
                       <Input
                         id="lowStockThreshold"
                         type="number"
                         value={settings.notifications.lowStockThreshold}
-                        onChange={(e) => updateSetting('notifications', 'lowStockThreshold', parseInt(e.target.value))}
+                        onChange={(e) =>
+                          updateSetting(
+                            "notifications",
+                            "lowStockThreshold",
+                            parseInt(e.target.value),
+                          )
+                        }
                       />
                       <p className="text-xs text-muted-foreground">
                         Alert when stock falls below this many days
@@ -317,12 +369,20 @@ export default function DashboardSettings() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="forecastThreshold">Forecast Accuracy Threshold (%)</Label>
+                      <Label htmlFor="forecastThreshold">
+                        Forecast Accuracy Threshold (%)
+                      </Label>
                       <Input
                         id="forecastThreshold"
                         type="number"
                         value={settings.notifications.forecastAccuracyThreshold}
-                        onChange={(e) => updateSetting('notifications', 'forecastAccuracyThreshold', parseInt(e.target.value))}
+                        onChange={(e) =>
+                          updateSetting(
+                            "notifications",
+                            "forecastAccuracyThreshold",
+                            parseInt(e.target.value),
+                          )
+                        }
                       />
                       <p className="text-xs text-muted-foreground">
                         Alert when accuracy drops below this percentage
@@ -343,7 +403,13 @@ export default function DashboardSettings() {
                       <Switch
                         id="dailyReports"
                         checked={settings.notifications.dailyReports}
-                        onCheckedChange={(checked) => updateSetting('notifications', 'dailyReports', checked)}
+                        onCheckedChange={(checked) =>
+                          updateSetting(
+                            "notifications",
+                            "dailyReports",
+                            checked,
+                          )
+                        }
                       />
                     </div>
 
@@ -357,7 +423,13 @@ export default function DashboardSettings() {
                       <Switch
                         id="weeklyReports"
                         checked={settings.notifications.weeklyReports}
-                        onCheckedChange={(checked) => updateSetting('notifications', 'weeklyReports', checked)}
+                        onCheckedChange={(checked) =>
+                          updateSetting(
+                            "notifications",
+                            "weeklyReports",
+                            checked,
+                          )
+                        }
                       />
                     </div>
                   </div>
@@ -381,7 +453,9 @@ export default function DashboardSettings() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <Label htmlFor="requireMFA">Require Multi-Factor Authentication</Label>
+                      <Label htmlFor="requireMFA">
+                        Require Multi-Factor Authentication
+                      </Label>
                       <p className="text-sm text-muted-foreground">
                         Require MFA for all user accounts
                       </p>
@@ -389,22 +463,33 @@ export default function DashboardSettings() {
                     <Switch
                       id="requireMFA"
                       checked={settings.security.requireMFA}
-                      onCheckedChange={(checked) => updateSetting('security', 'requireMFA', checked)}
+                      onCheckedChange={(checked) =>
+                        updateSetting("security", "requireMFA", checked)
+                      }
                     />
                   </div>
 
                   <Separator />
 
                   <div className="space-y-2">
-                    <Label htmlFor="sessionTimeout">Session Timeout (minutes)</Label>
+                    <Label htmlFor="sessionTimeout">
+                      Session Timeout (minutes)
+                    </Label>
                     <Input
                       id="sessionTimeout"
                       type="number"
                       value={settings.security.sessionTimeout}
-                      onChange={(e) => updateSetting('security', 'sessionTimeout', parseInt(e.target.value))}
+                      onChange={(e) =>
+                        updateSetting(
+                          "security",
+                          "sessionTimeout",
+                          parseInt(e.target.value),
+                        )
+                      }
                     />
                     <p className="text-xs text-muted-foreground">
-                      Automatically log out users after this period of inactivity
+                      Automatically log out users after this period of
+                      inactivity
                     </p>
                   </div>
 
@@ -420,7 +505,9 @@ export default function DashboardSettings() {
                     <Switch
                       id="auditLogging"
                       checked={settings.security.auditLogging}
-                      onCheckedChange={(checked) => updateSetting('security', 'auditLogging', checked)}
+                      onCheckedChange={(checked) =>
+                        updateSetting("security", "auditLogging", checked)
+                      }
                     />
                   </div>
                 </div>
@@ -447,7 +534,13 @@ export default function DashboardSettings() {
                       id="dataRetention"
                       type="number"
                       value={settings.data.dataRetention}
-                      onChange={(e) => updateSetting('data', 'dataRetention', parseInt(e.target.value))}
+                      onChange={(e) =>
+                        updateSetting(
+                          "data",
+                          "dataRetention",
+                          parseInt(e.target.value),
+                        )
+                      }
                     />
                     <p className="text-xs text-muted-foreground">
                       How long to keep historical data before archiving
@@ -466,15 +559,19 @@ export default function DashboardSettings() {
                     <Switch
                       id="autoBackup"
                       checked={settings.data.autoBackup}
-                      onCheckedChange={(checked) => updateSetting('data', 'autoBackup', checked)}
+                      onCheckedChange={(checked) =>
+                        updateSetting("data", "autoBackup", checked)
+                      }
                     />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="backupFrequency">Backup Frequency</Label>
-                    <Select 
-                      value={settings.data.backupFrequency} 
-                      onValueChange={(value) => updateSetting('data', 'backupFrequency', value)}
+                    <Select
+                      value={settings.data.backupFrequency}
+                      onValueChange={(value) =>
+                        updateSetting("data", "backupFrequency", value)
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue />

@@ -12,28 +12,31 @@ export default function Footer() {
               <div className="bg-gradient-to-r from-primary to-accent p-2 rounded-lg">
                 <TrendingUp className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-foreground">StockPilot</span>
+              <span className="text-xl font-bold text-foreground">
+                StockPilot
+              </span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs">
-              Forecast SKU-level demand, prevent stockouts, and automate PO approvals via Slack.
+              Forecast SKU-level demand, prevent stockouts, and automate PO
+              approvals via Slack.
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="GitHub"
               >
@@ -47,32 +50,32 @@ export default function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Product</h3>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  to="/features" 
+                <Link
+                  to="/features"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   Features
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/pricing" 
+                <Link
+                  to="/pricing"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   Pricing
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/integrations" 
+                <Link
+                  to="/integrations"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   Integrations
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/api" 
+                <Link
+                  to="/api"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   API
@@ -86,32 +89,32 @@ export default function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  to="/about" 
+                <Link
+                  to="/about"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   About
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/case-studies" 
+                <Link
+                  to="/case-studies"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   Case Studies
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/blog" 
+                <Link
+                  to="/blog"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   Blog
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/careers" 
+                <Link
+                  to="/careers"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   Careers
@@ -125,32 +128,32 @@ export default function Footer() {
             <h3 className="font-semibold text-foreground mb-4">Support</h3>
             <ul className="space-y-2">
               <li>
-                <Link 
-                  to="/help" 
+                <Link
+                  to="/help"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   Help Center
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/docs" 
+                <Link
+                  to="/docs"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   Documentation
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/contact" 
+                <Link
+                  to="/contact"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   Contact
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/status" 
+                <Link
+                  to="/status"
                   className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                 >
                   Status
@@ -200,9 +203,7 @@ export default function Footer() {
               <span>•</span>
               <span>ISO 27001</span>
             </div>
-            <div>
-              Made with ❤️ in San Francisco
-            </div>
+            <div>Made with ❤️ in San Francisco</div>
           </div>
         </div>
       </div>

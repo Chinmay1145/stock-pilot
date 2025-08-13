@@ -1,32 +1,38 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { TrustIndicators } from "@/components/TrustIndicators";
 import { CustomerLogos } from "@/components/CustomerLogos";
 import { CookieConsent } from "@/components/CookieConsent";
-import { 
-  TrendingUp, 
-  Zap, 
-  Shield, 
-  CheckCircle, 
-  ArrowRight, 
+import {
+  TrendingUp,
+  Zap,
+  Shield,
+  CheckCircle,
+  ArrowRight,
   BarChart3,
   Slack,
   ShoppingCart,
   AlertTriangle,
   Users,
   Star,
-  PlayCircle
+  PlayCircle,
 } from "lucide-react";
 
 export default function Index() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-background to-muted">
         <div className="container mx-auto text-center">
@@ -36,16 +42,18 @@ export default function Index() {
               AI-Powered Inventory Intelligence
             </Badge>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              Forecast SKU-level demand,<br />
+              Forecast SKU-level demand,
+              <br />
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 prevent stockouts
-              </span>,<br />
+              </span>
+              ,<br />
               automate PO approvals via Slack
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Transform your inventory management with AI-driven demand forecasting, 
-              intelligent purchase order automation, and seamless Slack integrations. 
-              Never run out of stock again.
+              Transform your inventory management with AI-driven demand
+              forecasting, intelligent purchase order automation, and seamless
+              Slack integrations. Never run out of stock again.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/signup">
@@ -54,7 +62,11 @@ export default function Index() {
                   <ArrowRight className="h-5 w-5" />
                 </Button>
               </Link>
-              <Button variant="outline" size="lg" className="px-8 py-4 text-lg gap-2">
+              <Button
+                variant="outline"
+                size="lg"
+                className="px-8 py-4 text-lg gap-2"
+              >
                 <PlayCircle className="h-5 w-5" />
                 Watch Demo
               </Button>
@@ -80,7 +92,8 @@ export default function Index() {
               Everything you need to optimize inventory
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Powerful features designed to eliminate stockouts and optimize your cash flow
+              Powerful features designed to eliminate stockouts and optimize
+              your cash flow
             </p>
           </div>
 
@@ -92,7 +105,8 @@ export default function Index() {
                 </div>
                 <CardTitle>12-Week Demand Forecasting</CardTitle>
                 <CardDescription>
-                  AI-powered SKU-level predictions with 95%+ accuracy using advanced machine learning
+                  AI-powered SKU-level predictions with 95%+ accuracy using
+                  advanced machine learning
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -104,7 +118,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Slack PO Automation</CardTitle>
                 <CardDescription>
-                  Automated purchase order approvals with interactive Slack buttons and multi-step workflows
+                  Automated purchase order approvals with interactive Slack
+                  buttons and multi-step workflows
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -116,7 +131,8 @@ export default function Index() {
                 </div>
                 <CardTitle>What-If Scenario Planner</CardTitle>
                 <CardDescription>
-                  Interactive demand modeling for price changes, promotions, and market scenarios
+                  Interactive demand modeling for price changes, promotions, and
+                  market scenarios
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -128,7 +144,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Stockout Risk Alerts</CardTitle>
                 <CardDescription>
-                  Real-time anomaly detection and automated alerts for inventory risks
+                  Real-time anomaly detection and automated alerts for inventory
+                  risks
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -140,7 +157,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Smart Purchase Orders</CardTitle>
                 <CardDescription>
-                  Automated PO generation based on forecasts, lead times, and supplier preferences
+                  Automated PO generation based on forecasts, lead times, and
+                  supplier preferences
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -152,7 +170,8 @@ export default function Index() {
                 </div>
                 <CardTitle>MAPE & Backtesting</CardTitle>
                 <CardDescription>
-                  Model accuracy tracking with comprehensive backtesting and performance analytics
+                  Model accuracy tracking with comprehensive backtesting and
+                  performance analytics
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -168,7 +187,8 @@ export default function Index() {
               See StockPilot in action
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Real-world use case: How a growing e-commerce brand reduced stockouts by 89%
+              Real-world use case: How a growing e-commerce brand reduced
+              stockouts by 89%
             </p>
           </div>
 
@@ -183,7 +203,8 @@ export default function Index() {
                     Connect Your Data Sources
                   </h3>
                   <p className="text-muted-foreground">
-                    Seamlessly integrate with Shopify, QuickBooks, and existing inventory systems
+                    Seamlessly integrate with Shopify, QuickBooks, and existing
+                    inventory systems
                   </p>
                 </div>
               </div>
@@ -197,7 +218,8 @@ export default function Index() {
                     AI Analyzes Demand Patterns
                   </h3>
                   <p className="text-muted-foreground">
-                    Machine learning models process seasonality, promotions, and market trends
+                    Machine learning models process seasonality, promotions, and
+                    market trends
                   </p>
                 </div>
               </div>
@@ -225,7 +247,8 @@ export default function Index() {
                     Approve via Slack
                   </h3>
                   <p className="text-muted-foreground">
-                    One-click approvals with full visibility into forecast rationale
+                    One-click approvals with full visibility into forecast
+                    rationale
                   </p>
                 </div>
               </div>
@@ -234,7 +257,9 @@ export default function Index() {
             <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 border border-border">
               <div className="bg-white rounded-lg p-6 shadow-lg">
                 <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-semibold text-foreground">Demo Dashboard</h4>
+                  <h4 className="font-semibold text-foreground">
+                    Demo Dashboard
+                  </h4>
                   <Badge variant="outline">Live Preview</Badge>
                 </div>
                 <div className="space-y-4">
@@ -243,11 +268,17 @@ export default function Index() {
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-muted rounded p-3">
-                      <p className="text-sm text-muted-foreground">Forecast Accuracy</p>
-                      <p className="text-lg font-semibold text-success">96.2%</p>
+                      <p className="text-sm text-muted-foreground">
+                        Forecast Accuracy
+                      </p>
+                      <p className="text-lg font-semibold text-success">
+                        96.2%
+                      </p>
                     </div>
                     <div className="bg-muted rounded p-3">
-                      <p className="text-sm text-muted-foreground">Stockouts Prevented</p>
+                      <p className="text-sm text-muted-foreground">
+                        Stockouts Prevented
+                      </p>
                       <p className="text-lg font-semibold text-primary">127</p>
                     </div>
                   </div>
@@ -275,12 +306,16 @@ export default function Index() {
               <CardHeader>
                 <div className="flex items-center space-x-1 mb-2">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <Star
+                      key={i}
+                      className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    />
                   ))}
                 </div>
                 <CardDescription className="text-base">
-                  "StockPilot reduced our stockouts by 89% and saved us $2M in working capital. 
-                  The Slack integration makes approvals seamless."
+                  "StockPilot reduced our stockouts by 89% and saved us $2M in
+                  working capital. The Slack integration makes approvals
+                  seamless."
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -290,7 +325,9 @@ export default function Index() {
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Sarah Chen</p>
-                    <p className="text-sm text-muted-foreground">COO, TechStyle Fashion</p>
+                    <p className="text-sm text-muted-foreground">
+                      COO, TechStyle Fashion
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -300,12 +337,15 @@ export default function Index() {
               <CardHeader>
                 <div className="flex items-center space-x-1 mb-2">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <Star
+                      key={i}
+                      className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    />
                   ))}
                 </div>
                 <CardDescription className="text-base">
-                  "The demand forecasting is incredibly accurate. We've gone from reactive 
-                  to proactive inventory management."
+                  "The demand forecasting is incredibly accurate. We've gone
+                  from reactive to proactive inventory management."
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -314,8 +354,12 @@ export default function Index() {
                     <Users className="h-5 w-5 text-accent" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Mike Rodriguez</p>
-                    <p className="text-sm text-muted-foreground">Inventory Director, GrowthCo</p>
+                    <p className="font-semibold text-foreground">
+                      Mike Rodriguez
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Inventory Director, GrowthCo
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -325,12 +369,15 @@ export default function Index() {
               <CardHeader>
                 <div className="flex items-center space-x-1 mb-2">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <Star
+                      key={i}
+                      className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    />
                   ))}
                 </div>
                 <CardDescription className="text-base">
-                  "Setup took 10 minutes. Within a week, we were getting actionable 
-                  insights that saved us from major stockouts."
+                  "Setup took 10 minutes. Within a week, we were getting
+                  actionable insights that saved us from major stockouts."
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -339,8 +386,12 @@ export default function Index() {
                     <Users className="h-5 w-5 text-success" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Emily Watson</p>
-                    <p className="text-sm text-muted-foreground">CEO, EcoLiving</p>
+                    <p className="font-semibold text-foreground">
+                      Emily Watson
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      CEO, EcoLiving
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -356,17 +407,26 @@ export default function Index() {
             Ready to eliminate stockouts forever?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join hundreds of growing businesses using StockPilot to optimize their inventory
+            Join hundreds of growing businesses using StockPilot to optimize
+            their inventory
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/signup">
-              <Button size="lg" variant="secondary" className="px-8 py-4 text-lg gap-2">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="px-8 py-4 text-lg gap-2"
+              >
                 Start Free Trial
                 <ArrowRight className="h-5 w-5" />
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-primary">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-primary"
+              >
                 Schedule Demo
               </Button>
             </Link>

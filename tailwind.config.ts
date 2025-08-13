@@ -99,7 +99,7 @@ export default {
         "slide-up": "slide-up 0.8s ease-out",
         "scale-in": "scale-in 0.4s ease-out",
         "theme-transition": "theme-transition 0.3s ease-in-out",
-        "scroll": "scroll 30s linear infinite",
+        scroll: "scroll 30s linear infinite",
       },
     },
   },

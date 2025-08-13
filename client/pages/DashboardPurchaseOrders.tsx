@@ -1,16 +1,28 @@
 import { useState, useEffect } from "react";
 import { DashboardLayout } from "@/components/DashboardLayout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { dashboardData } from "@/lib/dashboard-data";
-import { 
-  ShoppingCart, 
-  Clock, 
+import {
+  ShoppingCart,
+  Clock,
   CheckCircle,
   XCircle,
   AlertTriangle,
@@ -24,22 +36,28 @@ import {
   DollarSign,
   Package,
   Truck,
-  Calendar
+  Calendar,
 } from "lucide-react";
 
 interface PurchaseOrder {
   id: string;
   poNumber: string;
   supplier: string;
-  status: 'draft' | 'pending_approval' | 'approved' | 'sent' | 'received' | 'cancelled';
-  priority: 'low' | 'medium' | 'high' | 'urgent';
+  status:
+    | "draft"
+    | "pending_approval"
+    | "approved"
+    | "sent"
+    | "received"
+    | "cancelled";
+  priority: "low" | "medium" | "high" | "urgent";
   totalAmount: number;
   orderDate: string;
   expectedDelivery: string;
   approver: string;
   items: POItem[];
   notes?: string;
-  createdBy: 'ai' | 'manual';
+  createdBy: "ai" | "manual";
 }
 
 interface POItem {
@@ -48,133 +66,133 @@ interface POItem {
   quantity: number;
   unitPrice: number;
   totalPrice: number;
-  urgency: 'low' | 'medium' | 'high';
+  urgency: "low" | "medium" | "high";
 }
 
 const mockPurchaseOrders: PurchaseOrder[] = [
   {
-    id: '1',
-    poNumber: 'PO-2024-001',
-    supplier: 'TechSupply Co.',
-    status: 'pending_approval',
-    priority: 'high',
+    id: "1",
+    poNumber: "PO-2024-001",
+    supplier: "TechSupply Co.",
+    status: "pending_approval",
+    priority: "high",
     totalAmount: 25000,
-    orderDate: '2024-01-15T00:00:00Z',
-    expectedDelivery: '2024-01-22T00:00:00Z',
-    approver: 'John Smith',
-    createdBy: 'ai',
+    orderDate: "2024-01-15T00:00:00Z",
+    expectedDelivery: "2024-01-22T00:00:00Z",
+    approver: "John Smith",
+    createdBy: "ai",
     items: [
       {
-        sku: 'TECH-001',
-        productName: 'Wireless Headphones Pro',
+        sku: "TECH-001",
+        productName: "Wireless Headphones Pro",
         quantity: 500,
         unitPrice: 50,
         totalPrice: 25000,
-        urgency: 'high'
-      }
+        urgency: "high",
+      },
     ],
-    notes: 'Urgent restock due to low inventory levels'
+    notes: "Urgent restock due to low inventory levels",
   },
   {
-    id: '2',
-    poNumber: 'PO-2024-002',
-    supplier: 'Fashion Direct',
-    status: 'approved',
-    priority: 'urgent',
+    id: "2",
+    poNumber: "PO-2024-002",
+    supplier: "Fashion Direct",
+    status: "approved",
+    priority: "urgent",
     totalAmount: 16000,
-    orderDate: '2024-01-14T00:00:00Z',
-    expectedDelivery: '2024-01-20T00:00:00Z',
-    approver: 'Sarah Johnson',
-    createdBy: 'ai',
+    orderDate: "2024-01-14T00:00:00Z",
+    expectedDelivery: "2024-01-20T00:00:00Z",
+    approver: "Sarah Johnson",
+    createdBy: "ai",
     items: [
       {
-        sku: 'FASH-002',
-        productName: 'Premium Cotton T-Shirt',
+        sku: "FASH-002",
+        productName: "Premium Cotton T-Shirt",
         quantity: 800,
         unitPrice: 20,
         totalPrice: 16000,
-        urgency: 'urgent'
-      }
+        urgency: "urgent",
+      },
     ],
-    notes: 'Critical stockout prevention'
+    notes: "Critical stockout prevention",
   },
   {
-    id: '3',
-    poNumber: 'PO-2024-003',
-    supplier: 'AudioTech Ltd.',
-    status: 'sent',
-    priority: 'medium',
+    id: "3",
+    poNumber: "PO-2024-003",
+    supplier: "AudioTech Ltd.",
+    status: "sent",
+    priority: "medium",
     totalAmount: 45000,
-    orderDate: '2024-01-13T00:00:00Z',
-    expectedDelivery: '2024-01-25T00:00:00Z',
-    approver: 'Mike Wilson',
-    createdBy: 'manual',
+    orderDate: "2024-01-13T00:00:00Z",
+    expectedDelivery: "2024-01-25T00:00:00Z",
+    approver: "Mike Wilson",
+    createdBy: "manual",
     items: [
       {
-        sku: 'TECH-004',
-        productName: 'Bluetooth Speaker',
+        sku: "TECH-004",
+        productName: "Bluetooth Speaker",
         quantity: 600,
         unitPrice: 75,
         totalPrice: 45000,
-        urgency: 'medium'
-      }
-    ]
+        urgency: "medium",
+      },
+    ],
   },
   {
-    id: '4',
-    poNumber: 'PO-2024-004',
-    supplier: 'Kitchen Pro',
-    status: 'draft',
-    priority: 'low',
+    id: "4",
+    poNumber: "PO-2024-004",
+    supplier: "Kitchen Pro",
+    status: "draft",
+    priority: "low",
     totalAmount: 20000,
-    orderDate: '2024-01-15T00:00:00Z',
-    expectedDelivery: '2024-01-30T00:00:00Z',
-    approver: 'Lisa Chen',
-    createdBy: 'ai',
+    orderDate: "2024-01-15T00:00:00Z",
+    expectedDelivery: "2024-01-30T00:00:00Z",
+    approver: "Lisa Chen",
+    createdBy: "ai",
     items: [
       {
-        sku: 'HOME-006',
-        productName: 'Kitchen Knife Set',
+        sku: "HOME-006",
+        productName: "Kitchen Knife Set",
         quantity: 200,
         unitPrice: 100,
         totalPrice: 20000,
-        urgency: 'low'
-      }
+        urgency: "low",
+      },
     ],
-    notes: 'Proactive inventory replenishment'
+    notes: "Proactive inventory replenishment",
   },
   {
-    id: '5',
-    poNumber: 'PO-2024-005',
-    supplier: 'Denim Factory',
-    status: 'received',
-    priority: 'high',
+    id: "5",
+    poNumber: "PO-2024-005",
+    supplier: "Denim Factory",
+    status: "received",
+    priority: "high",
     totalAmount: 13500,
-    orderDate: '2024-01-10T00:00:00Z',
-    expectedDelivery: '2024-01-17T00:00:00Z',
-    approver: 'John Smith',
-    createdBy: 'manual',
+    orderDate: "2024-01-10T00:00:00Z",
+    expectedDelivery: "2024-01-17T00:00:00Z",
+    approver: "John Smith",
+    createdBy: "manual",
     items: [
       {
-        sku: 'FASH-005',
-        productName: 'Denim Jeans Classic',
+        sku: "FASH-005",
+        productName: "Denim Jeans Classic",
         quantity: 300,
         unitPrice: 45,
         totalPrice: 13500,
-        urgency: 'high'
-      }
-    ]
-  }
+        urgency: "high",
+      },
+    ],
+  },
 ];
 
 export default function DashboardPurchaseOrders() {
   const [purchaseOrders, setPurchaseOrders] = useState<PurchaseOrder[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState('all');
-  const [selectedPriority, setSelectedPriority] = useState('all');
-  const [sortBy, setSortBy] = useState('orderDate');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("all");
+  const [selectedPriority, setSelectedPriority] = useState("all");
+  const [sortBy, setSortBy] = useState("orderDate");
 
   useEffect(() => {
     loadPurchaseOrderData();
@@ -183,10 +201,10 @@ export default function DashboardPurchaseOrders() {
   const loadPurchaseOrderData = async () => {
     setLoading(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       setPurchaseOrders(mockPurchaseOrders);
     } catch (error) {
-      console.error('Failed to load purchase order data:', error);
+      console.error("Failed to load purchase order data:", error);
     } finally {
       setLoading(false);
     }
@@ -195,31 +213,41 @@ export default function DashboardPurchaseOrders() {
   const handleRefresh = async () => {
     setRefreshing(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setPurchaseOrders(mockPurchaseOrders);
     } catch (error) {
-      console.error('Failed to refresh data:', error);
+      console.error("Failed to refresh data:", error);
     } finally {
       setRefreshing(false);
     }
   };
 
   const filteredPOs = purchaseOrders
-    .filter(po => 
-      po.poNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      po.supplier.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      po.items.some(item => item.productName.toLowerCase().includes(searchTerm.toLowerCase()))
+    .filter(
+      (po) =>
+        po.poNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        po.supplier.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        po.items.some((item) =>
+          item.productName.toLowerCase().includes(searchTerm.toLowerCase()),
+        ),
     )
-    .filter(po => selectedStatus === 'all' || po.status === selectedStatus)
-    .filter(po => selectedPriority === 'all' || po.priority === selectedPriority)
+    .filter((po) => selectedStatus === "all" || po.status === selectedStatus)
+    .filter(
+      (po) => selectedPriority === "all" || po.priority === selectedPriority,
+    )
     .sort((a, b) => {
       switch (sortBy) {
-        case 'orderDate':
-          return new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime();
-        case 'totalAmount':
+        case "orderDate":
+          return (
+            new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime()
+          );
+        case "totalAmount":
           return b.totalAmount - a.totalAmount;
-        case 'expectedDelivery':
-          return new Date(a.expectedDelivery).getTime() - new Date(b.expectedDelivery).getTime();
+        case "expectedDelivery":
+          return (
+            new Date(a.expectedDelivery).getTime() -
+            new Date(b.expectedDelivery).getTime()
+          );
         default:
           return 0;
       }
@@ -227,51 +255,79 @@ export default function DashboardPurchaseOrders() {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case 'draft': return <Badge variant="outline">Draft</Badge>;
-      case 'pending_approval': return <Badge variant="warning">Pending Approval</Badge>;
-      case 'approved': return <Badge variant="success">Approved</Badge>;
-      case 'sent': return <Badge variant="secondary">Sent</Badge>;
-      case 'received': return <Badge variant="success">Received</Badge>;
-      case 'cancelled': return <Badge variant="destructive">Cancelled</Badge>;
-      default: return <Badge variant="outline">Unknown</Badge>;
+      case "draft":
+        return <Badge variant="outline">Draft</Badge>;
+      case "pending_approval":
+        return <Badge variant="warning">Pending Approval</Badge>;
+      case "approved":
+        return <Badge variant="success">Approved</Badge>;
+      case "sent":
+        return <Badge variant="secondary">Sent</Badge>;
+      case "received":
+        return <Badge variant="success">Received</Badge>;
+      case "cancelled":
+        return <Badge variant="destructive">Cancelled</Badge>;
+      default:
+        return <Badge variant="outline">Unknown</Badge>;
     }
   };
 
   const getPriorityBadge = (priority: string) => {
     switch (priority) {
-      case 'urgent': return <Badge variant="destructive">Urgent</Badge>;
-      case 'high': return <Badge variant="warning">High</Badge>;
-      case 'medium': return <Badge variant="secondary">Medium</Badge>;
-      case 'low': return <Badge variant="outline">Low</Badge>;
-      default: return <Badge variant="outline">Unknown</Badge>;
+      case "urgent":
+        return <Badge variant="destructive">Urgent</Badge>;
+      case "high":
+        return <Badge variant="warning">High</Badge>;
+      case "medium":
+        return <Badge variant="secondary">Medium</Badge>;
+      case "low":
+        return <Badge variant="outline">Low</Badge>;
+      default:
+        return <Badge variant="outline">Unknown</Badge>;
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'draft': return <Edit className="h-4 w-4 text-muted-foreground" />;
-      case 'pending_approval': return <Clock className="h-4 w-4 text-warning" />;
-      case 'approved': return <CheckCircle className="h-4 w-4 text-success" />;
-      case 'sent': return <Send className="h-4 w-4 text-blue-500" />;
-      case 'received': return <Package className="h-4 w-4 text-success" />;
-      case 'cancelled': return <XCircle className="h-4 w-4 text-destructive" />;
-      default: return null;
+      case "draft":
+        return <Edit className="h-4 w-4 text-muted-foreground" />;
+      case "pending_approval":
+        return <Clock className="h-4 w-4 text-warning" />;
+      case "approved":
+        return <CheckCircle className="h-4 w-4 text-success" />;
+      case "sent":
+        return <Send className="h-4 w-4 text-blue-500" />;
+      case "received":
+        return <Package className="h-4 w-4 text-success" />;
+      case "cancelled":
+        return <XCircle className="h-4 w-4 text-destructive" />;
+      default:
+        return null;
     }
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     });
   };
 
   // Calculate metrics
-  const totalValue = purchaseOrders.reduce((sum, po) => sum + po.totalAmount, 0);
-  const pendingApprovals = purchaseOrders.filter(po => po.status === 'pending_approval').length;
-  const aiGenerated = purchaseOrders.filter(po => po.createdBy === 'ai').length;
-  const urgentOrders = purchaseOrders.filter(po => po.priority === 'urgent' || po.priority === 'high').length;
+  const totalValue = purchaseOrders.reduce(
+    (sum, po) => sum + po.totalAmount,
+    0,
+  );
+  const pendingApprovals = purchaseOrders.filter(
+    (po) => po.status === "pending_approval",
+  ).length;
+  const aiGenerated = purchaseOrders.filter(
+    (po) => po.createdBy === "ai",
+  ).length;
+  const urgentOrders = purchaseOrders.filter(
+    (po) => po.priority === "urgent" || po.priority === "high",
+  ).length;
 
   if (loading) {
     return (
@@ -293,15 +349,24 @@ export default function DashboardPurchaseOrders() {
               <ShoppingCart className="h-6 w-6 text-success" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-foreground">Purchase Orders</h1>
+              <h1 className="text-3xl font-bold text-foreground">
+                Purchase Orders
+              </h1>
               <p className="text-muted-foreground">
                 Automated PO generation and approval workflows
               </p>
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <Button variant="outline" size="sm" onClick={handleRefresh} disabled={refreshing}>
-              <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              disabled={refreshing}
+            >
+              <RefreshCw
+                className={`h-4 w-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
+              />
               Refresh
             </Button>
             <Button variant="outline" size="sm">
@@ -321,8 +386,12 @@ export default function DashboardPurchaseOrders() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Total PO Value</p>
-                  <p className="text-2xl font-bold">${totalValue.toLocaleString()}</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Total PO Value
+                  </p>
+                  <p className="text-2xl font-bold">
+                    ${totalValue.toLocaleString()}
+                  </p>
                 </div>
                 <DollarSign className="h-8 w-8 text-primary" />
               </div>
@@ -336,7 +405,9 @@ export default function DashboardPurchaseOrders() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Pending Approvals</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Pending Approvals
+                  </p>
                   <p className="text-2xl font-bold">{pendingApprovals}</p>
                 </div>
                 <Clock className="h-8 w-8 text-warning" />
@@ -351,7 +422,9 @@ export default function DashboardPurchaseOrders() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">AI Generated</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    AI Generated
+                  </p>
                   <p className="text-2xl font-bold">{aiGenerated}</p>
                 </div>
                 <AlertTriangle className="h-8 w-8 text-accent" />
@@ -366,7 +439,9 @@ export default function DashboardPurchaseOrders() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Urgent Orders</p>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Urgent Orders
+                  </p>
                   <p className="text-2xl font-bold">{urgentOrders}</p>
                 </div>
                 <Package className="h-8 w-8 text-destructive" />
@@ -398,14 +473,19 @@ export default function DashboardPurchaseOrders() {
                 <SelectContent>
                   <SelectItem value="all">All Status</SelectItem>
                   <SelectItem value="draft">Draft</SelectItem>
-                  <SelectItem value="pending_approval">Pending Approval</SelectItem>
+                  <SelectItem value="pending_approval">
+                    Pending Approval
+                  </SelectItem>
                   <SelectItem value="approved">Approved</SelectItem>
                   <SelectItem value="sent">Sent</SelectItem>
                   <SelectItem value="received">Received</SelectItem>
                   <SelectItem value="cancelled">Cancelled</SelectItem>
                 </SelectContent>
               </Select>
-              <Select value={selectedPriority} onValueChange={setSelectedPriority}>
+              <Select
+                value={selectedPriority}
+                onValueChange={setSelectedPriority}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Priority" />
                 </SelectTrigger>
@@ -424,7 +504,9 @@ export default function DashboardPurchaseOrders() {
                 <SelectContent>
                   <SelectItem value="orderDate">Order Date</SelectItem>
                   <SelectItem value="totalAmount">Total Amount</SelectItem>
-                  <SelectItem value="expectedDelivery">Expected Delivery</SelectItem>
+                  <SelectItem value="expectedDelivery">
+                    Expected Delivery
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -436,7 +518,8 @@ export default function DashboardPurchaseOrders() {
           <CardHeader>
             <CardTitle>Purchase Orders</CardTitle>
             <CardDescription>
-              Showing {filteredPOs.length} of {purchaseOrders.length} purchase orders
+              Showing {filteredPOs.length} of {purchaseOrders.length} purchase
+              orders
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -451,44 +534,73 @@ export default function DashboardPurchaseOrders() {
                       {getStatusIcon(po.status)}
                       <div>
                         <h3 className="font-semibold">{po.poNumber}</h3>
-                        <p className="text-sm text-muted-foreground">{po.supplier}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {po.supplier}
+                        </p>
                       </div>
                       {getStatusBadge(po.status)}
                       {getPriorityBadge(po.priority)}
-                      {po.createdBy === 'ai' && (
-                        <Badge variant="outline" className="text-xs">AI Generated</Badge>
+                      {po.createdBy === "ai" && (
+                        <Badge variant="outline" className="text-xs">
+                          AI Generated
+                        </Badge>
                       )}
                     </div>
-                    
+
                     <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
                       <div>
-                        <p className="text-xs text-muted-foreground">Total Amount</p>
-                        <p className="font-medium">${po.totalAmount.toLocaleString()}</p>
+                        <p className="text-xs text-muted-foreground">
+                          Total Amount
+                        </p>
+                        <p className="font-medium">
+                          ${po.totalAmount.toLocaleString()}
+                        </p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Order Date</p>
-                        <p className="font-medium text-sm">{formatDate(po.orderDate)}</p>
+                        <p className="text-xs text-muted-foreground">
+                          Order Date
+                        </p>
+                        <p className="font-medium text-sm">
+                          {formatDate(po.orderDate)}
+                        </p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Expected Delivery</p>
-                        <p className="font-medium text-sm">{formatDate(po.expectedDelivery)}</p>
+                        <p className="text-xs text-muted-foreground">
+                          Expected Delivery
+                        </p>
+                        <p className="font-medium text-sm">
+                          {formatDate(po.expectedDelivery)}
+                        </p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">Approver</p>
+                        <p className="text-xs text-muted-foreground">
+                          Approver
+                        </p>
                         <p className="font-medium text-sm">{po.approver}</p>
                       </div>
                       <div>
                         <p className="text-xs text-muted-foreground">Items</p>
-                        <p className="font-medium">{po.items.length} item{po.items.length !== 1 ? 's' : ''}</p>
+                        <p className="font-medium">
+                          {po.items.length} item
+                          {po.items.length !== 1 ? "s" : ""}
+                        </p>
                       </div>
                     </div>
 
                     {/* Items Summary */}
                     <div className="space-y-2">
                       {po.items.map((item, index) => (
-                        <div key={index} className="flex items-center justify-between text-sm bg-muted/30 p-2 rounded">
-                          <span>{item.productName} ({item.sku})</span>
-                          <span className="font-medium">{item.quantity} × ${item.unitPrice} = ${item.totalPrice.toLocaleString()}</span>
+                        <div
+                          key={index}
+                          className="flex items-center justify-between text-sm bg-muted/30 p-2 rounded"
+                        >
+                          <span>
+                            {item.productName} ({item.sku})
+                          </span>
+                          <span className="font-medium">
+                            {item.quantity} × ${item.unitPrice} = $
+                            {item.totalPrice.toLocaleString()}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -505,14 +617,17 @@ export default function DashboardPurchaseOrders() {
                       <Eye className="h-4 w-4 mr-1" />
                       View
                     </Button>
-                    {po.status === 'draft' && (
+                    {po.status === "draft" && (
                       <Button size="sm" variant="outline">
                         <Edit className="h-4 w-4 mr-1" />
                         Edit
                       </Button>
                     )}
-                    {po.status === 'pending_approval' && (
-                      <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                    {po.status === "pending_approval" && (
+                      <Button
+                        size="sm"
+                        className="bg-green-600 hover:bg-green-700"
+                      >
                         <CheckCircle className="h-4 w-4 mr-1" />
                         Approve
                       </Button>
