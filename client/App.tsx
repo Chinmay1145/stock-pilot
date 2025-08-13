@@ -26,6 +26,7 @@ import Status from "./pages/Status";
 import Integrations from "./pages/Integrations";
 import ApiDocs from "./pages/ApiDocs";
 import Docs from "./pages/Docs";
+import Dashboard from "./pages/Dashboard";
 
 const queryClient = new QueryClient();
 
