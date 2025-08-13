@@ -66,6 +66,12 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Customer Logos */}
+      <CustomerLogos />
+
+      {/* Trust Indicators */}
+      <TrustIndicators />
+
       {/* Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
