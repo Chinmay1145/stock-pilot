@@ -4,6 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { TrustIndicators } from "@/components/TrustIndicators";
+import { CustomerLogos } from "@/components/CustomerLogos";
+import { CookieConsent } from "@/components/CookieConsent";
 import { 
   TrendingUp, 
   Zap, 
