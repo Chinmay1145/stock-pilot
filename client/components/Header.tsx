@@ -117,6 +117,11 @@ export default function Header() {
                     <span className="text-sm text-muted-foreground">Theme</span>
                     <ThemeToggle />
                   </div>
+                  <Link to="/dashboard">
+                    <Button variant="outline" className="w-full justify-start">
+                      Dashboard
+                    </Button>
+                  </Link>
                   <Link to="/login">
                     <Button variant="ghost" className="w-full justify-start">
                       Sign In
