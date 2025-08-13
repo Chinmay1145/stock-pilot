@@ -60,4 +60,15 @@ const App = () => (
   </ThemeProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Prevent multiple root creation during hot module replacement
+const container = document.getElementById("root")!;
+
+// Check if root already exists
+let root = (container as any)._reactRoot;
+
+if (!root) {
+  root = createRoot(container);
+  (container as any)._reactRoot = root;
+}
+
+root.render(<App />);
