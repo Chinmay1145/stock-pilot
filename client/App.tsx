@@ -27,6 +27,7 @@ import Integrations from "./pages/Integrations";
 import ApiDocs from "./pages/ApiDocs";
 import Docs from "./pages/Docs";
 import Dashboard from "./pages/Dashboard";
+import { DashboardSubPage } from "./components/DashboardSubPage";
 
 const queryClient = new QueryClient();
 
