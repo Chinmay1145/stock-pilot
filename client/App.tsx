@@ -36,6 +36,7 @@ import DashboardAlerts from "./pages/DashboardAlerts";
 import DashboardTeam from "./pages/DashboardTeam";
 import DashboardSettings from "./pages/DashboardSettings";
 import DashboardIntegrations from "./pages/DashboardIntegrations";
+import Onboarding from "./pages/Onboarding";
 import { DashboardSubPage } from "./components/DashboardSubPage";
 
 const queryClient = new QueryClient();
