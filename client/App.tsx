@@ -45,7 +45,8 @@ const queryClient = new QueryClient();
 const App = () => (
   <ErrorBoundary>
     <ThemeProvider defaultTheme="system" storageKey="stockpilot-theme">
-      <QueryClientProvider client={queryClient}>
+      <UserRoleProvider>
+        <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Toaster />
           <Sonner />
@@ -97,7 +98,8 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </UserRoleProvider>
     </ThemeProvider>
   </ErrorBoundary>
 );
