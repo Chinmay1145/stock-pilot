@@ -36,6 +36,7 @@ import {
 } from "lucide-react";
 
 export default function Dashboard() {
+  const { userRole } = useUserRole();
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
