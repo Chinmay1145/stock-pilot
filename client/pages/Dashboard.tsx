@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { OnboardingProgress } from "@/components/OnboardingProgress";
+import { RoleSpecificDashboard } from "@/components/dashboard/RoleSpecificDashboard";
+import { useUserRole } from "@/contexts/UserRoleContext";
 import { dashboardData, type DashboardStats } from "@/lib/dashboard-data";
 import {
   DollarSign,
